@@ -38,6 +38,15 @@ jobs:
           path: ~/.m2
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-m2
+      - name: Run Code Coverage
+        run: mvn clean test
+      - name: Upload JaCoCo Report
+        uses: actions/upload-artifact@v4.3.1
+        with:
+          name: code-coverage-report
+          path: |
+            ${{ github.workspace }}/**/build/reports/jacoco/test/html/*
+            ${{ github.workspace }}/**/target/site/jacoco/*
       - name: Build and analyze
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any

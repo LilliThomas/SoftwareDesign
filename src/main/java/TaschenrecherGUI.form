@@ -184,12 +184,28 @@
           <text value="DEL"/>
         </properties>
       </component>
-      <component id="1be13" class="javax.swing.JButton" binding="ACButton" default-binding="true">
+      <component id="1be13" class="javax.swing.JButton" binding="CButton">
         <constraints>
           <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
-          <text value="AC"/>
+          <text value="C"/>
+        </properties>
+      </component>
+      <component id="d8b45" class="javax.swing.JButton" binding="CEButton" default-binding="true">
+        <constraints>
+          <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="CE"/>
+        </properties>
+      </component>
+      <component id="3f26f" class="javax.swing.JButton" binding="buttonProzent">
+        <constraints>
+          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="%"/>
         </properties>
       </component>
     </children>

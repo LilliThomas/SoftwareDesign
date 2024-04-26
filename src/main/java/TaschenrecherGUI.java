@@ -22,11 +22,13 @@ public class TaschenrecherGUI extends JFrame{
     private JButton a1Button;
     private JButton buttonVorzeichen;
     private JButton DELButton;
-    private JButton ACButton;
+    private JButton CButton;
     private JButton buttonPlus;
     private JButton buttonGleich;
+    private JButton CEButton;
+    private JButton buttonProzent;
 
-    public TaschenrecherGUI(JButton buttonMinus, JButton buttonMal, JButton buttonGeteilt, JButton buttonKlammerZu, JButton a9Button, JButton a6Button, JButton a3Button, JButton buttonKomma, JButton buttonKlammerAuf, JButton a8Button, JButton a5Button, JButton a2Button, JButton a0Button, JButton a7Button, JButton weitereFunktionenButton, JButton a4Button, JButton a1Button, JButton buttonVorzeichen, JButton delButton, JButton acButton, JButton buttonPlus, JButton buttonGleich){
+    public TaschenrecherGUI(JButton buttonMinus, JButton buttonMal, JButton buttonGeteilt, JButton buttonKlammerZu, JButton a9Button, JButton a6Button, JButton a3Button, JButton buttonKomma, JButton buttonKlammerAuf, JButton a8Button, JButton a5Button, JButton a2Button, JButton a0Button, JButton a7Button, JButton weitereFunktionenButton, JButton a4Button, JButton a1Button, JButton buttonVorzeichen, JButton delButton, JButton cButton, JButton buttonPlus, JButton buttonGleich, JButton ceButton){
         this.buttonMinus = buttonMinus;
         this.buttonMal = buttonMal;
         this.buttonGeteilt = buttonGeteilt;
@@ -46,9 +48,10 @@ public class TaschenrecherGUI extends JFrame{
         this.a1Button = a1Button;
         this.buttonVorzeichen = buttonVorzeichen;
         DELButton = delButton;
-        ACButton = acButton;
+        CButton = cButton;
         this.buttonPlus = buttonPlus;
         this.buttonGleich = buttonGleich;
+        CEButton = ceButton;
         setTitle("Taschenrechner");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(300,300);
@@ -56,7 +59,7 @@ public class TaschenrecherGUI extends JFrame{
         setVisible(true);
 
 
-        ACButton.addActionListener(new ActionListener() {
+        CButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
@@ -183,6 +186,20 @@ public class TaschenrecherGUI extends JFrame{
             }
         });
         buttonGleich.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+
+        CEButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+
+        buttonProzent.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 

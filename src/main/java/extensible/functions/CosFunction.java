@@ -1,4 +1,4 @@
-package calculator.extensible.functions;
+package extensible.functions;
 
 public class CosFunction implements CalculatorFunction {
     @Override

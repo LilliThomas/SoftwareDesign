@@ -1,4 +1,4 @@
-package calculator.extensible.functions;
+package extensible.functions;
 
 public interface CalculatorFunction {
     double calculate(double parameter);

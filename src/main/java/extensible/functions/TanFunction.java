@@ -1,4 +1,4 @@
-package calculator.extensible.functions;
+package extensible.functions;
 
 public class TanFunction implements CalculatorFunction {
     @Override

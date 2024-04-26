@@ -1,4 +1,4 @@
-package calculator.extensible.functions;
+package extensible.functions;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

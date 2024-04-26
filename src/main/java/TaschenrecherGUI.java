@@ -7,51 +7,51 @@ public class TaschenrecherGUI extends JFrame{
     private JButton buttonMal;
     private JButton buttonGeteilt;
     private JButton buttonWurzel;
-    private JButton Ziffer9Button;
-    private JButton Ziffer6Button;
-    private JButton Ziffer3Button;
+    private JButton buttonZiffer9;
+    private JButton buttonZiffer6;
+    private JButton buttonZiffer3;
     private JButton buttonKomma;
     private JButton buttonQuadrat;
-    private JButton Ziffer8Button;
-    private JButton Ziffer5Button;
-    private JButton Ziffer2Button;
-    private JButton Ziffer0Button;
-    private JButton Ziffer7Button;
-    private JButton xTeiler;
-    private JButton Ziffer4Button;
-    private JButton Ziffer1Button;
+    private JButton buttonZiffer8;
+    private JButton buttonZiffer5;
+    private JButton buttonZiffer2;
+    private JButton buttonZiffer0;
+    private JButton buttonZiffer7;
+    private JButton buttonWeiterFunktionen;
+    private JButton buttonZiffer4;
+    private JButton buttonZiffer1;
     private JButton buttonVorzeichen;
-    private JButton DELButton;
-    private JButton CButton;
+    private JButton buttonDEL;
+    private JButton buttonC;
     private JButton buttonPlus;
     private JButton buttonGleich;
-    private JButton CEButton;
+    private JButton buttonCE;
     private JButton buttonProzent;
 
-    public TaschenrecherGUI(JButton buttonMinus, JButton buttonMal, JButton buttonGeteilt, JButton buttonKlammerZu, JButton Ziffer9Button, JButton Ziffer6Button, JButton Ziffer3Button, JButton buttonKomma, JButton buttonKlammerAuf, JButton Ziffer8Button, JButton Ziffer5Button, JButton Ziffer2Button, JButton Ziffer0Button, JButton Ziffer7Button, JButton weitereFunktionenButton, JButton Ziffer4Button, JButton Ziffer1Button, JButton buttonVorzeichen, JButton delButton, JButton cButton, JButton buttonPlus, JButton buttonGleich, JButton ceButton){
+    public TaschenrecherGUI(JButton buttonMinus, JButton buttonMal, JButton buttonGeteilt, JButton buttonKlammerZu, JButton buttonZiffer9, JButton buttonZiffer6, JButton buttonZiffer3, JButton buttonKomma, JButton buttonKlammerAuf, JButton buttonZiffer8, JButton buttonZiffer5, JButton buttonZiffer2, JButton buttonZiffer0, JButton buttonZiffer7, JButton buttonWeiterFunktionen, JButton buttonZiffer4, JButton buttonZiffer1, JButton buttonVorzeichen, JButton buttonDel, JButton buttonC, JButton buttonPlus, JButton buttonGleich, JButton buttonCe){
         this.buttonMinus = buttonMinus;
         this.buttonMal = buttonMal;
         this.buttonGeteilt = buttonGeteilt;
         this.buttonWurzel = buttonKlammerZu;
-        this.Ziffer9Button = Ziffer9Button;
-        this.Ziffer6Button = Ziffer6Button;
-        this.Ziffer3Button = Ziffer3Button;
+        this.buttonZiffer9 = buttonZiffer9;
+        this.buttonZiffer6 = buttonZiffer6;
+        this.buttonZiffer3 = buttonZiffer3;
         this.buttonKomma = buttonKomma;
         this.buttonQuadrat = buttonKlammerAuf;
-        this.Ziffer8Button = Ziffer8Button;
-        this.Ziffer5Button = Ziffer5Button;
-        this.Ziffer2Button = Ziffer2Button;
-        this.Ziffer0Button = Ziffer0Button;
-        this.Ziffer7Button = Ziffer7Button;
-        this.xTeiler = weitereFunktionenButton;
-        this.Ziffer4Button = Ziffer4Button;
-        this.Ziffer1Button = Ziffer1Button;
+        this.buttonZiffer8 = buttonZiffer8;
+        this.buttonZiffer5 = buttonZiffer5;
+        this.buttonZiffer2 = buttonZiffer2;
+        this.buttonZiffer0 = buttonZiffer0;
+        this.buttonZiffer7 = buttonZiffer7;
+        this.buttonWeiterFunktionen = buttonWeiterFunktionen;
+        this.buttonZiffer4 = buttonZiffer4;
+        this.buttonZiffer1 = buttonZiffer1;
         this.buttonVorzeichen = buttonVorzeichen;
-        DELButton = delButton;
-        CButton = cButton;
+        buttonDEL = buttonDel;
+        this.buttonC = buttonC;
         this.buttonPlus = buttonPlus;
         this.buttonGleich = buttonGleich;
-        CEButton = ceButton;
+        buttonCE = buttonCe;
         setTitle("Taschenrechner");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(300,300);
@@ -59,19 +59,19 @@ public class TaschenrecherGUI extends JFrame{
         setVisible(true);
 
 
-        CButton.addActionListener(new ActionListener() {
+        this.buttonC.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
             }
         });
-        DELButton.addActionListener(new ActionListener() {
+        buttonDEL.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
             }
         });
-        weitereFunktionenButton.addActionListener(new ActionListener() {
+        buttonWeiterFunktionen.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
@@ -95,19 +95,19 @@ public class TaschenrecherGUI extends JFrame{
 
             }
         });
-        Ziffer7Button.addActionListener(new ActionListener() {
+        buttonZiffer7.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
             }
         });
-        Ziffer8Button.addActionListener(new ActionListener() {
+        buttonZiffer8.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
             }
         });
-        Ziffer9Button.addActionListener(new ActionListener() {
+        buttonZiffer9.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
@@ -119,19 +119,19 @@ public class TaschenrecherGUI extends JFrame{
 
             }
         });
-        Ziffer4Button.addActionListener(new ActionListener() {
+        buttonZiffer4.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
             }
         });
-        Ziffer5Button.addActionListener(new ActionListener() {
+        buttonZiffer5.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
             }
         });
-        Ziffer6Button.addActionListener(new ActionListener() {
+        buttonZiffer6.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
@@ -143,19 +143,19 @@ public class TaschenrecherGUI extends JFrame{
 
             }
         });
-        Ziffer1Button.addActionListener(new ActionListener() {
+        buttonZiffer1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
             }
         });
-        Ziffer2Button.addActionListener(new ActionListener() {
+        buttonZiffer2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
             }
         });
-        Ziffer3Button.addActionListener(new ActionListener() {
+        buttonZiffer3.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
@@ -167,7 +167,7 @@ public class TaschenrecherGUI extends JFrame{
 
             }
         });
-        Ziffer0Button.addActionListener(new ActionListener() {
+        buttonZiffer0.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
@@ -192,7 +192,7 @@ public class TaschenrecherGUI extends JFrame{
             }
         });
 
-        CEButton.addActionListener(new ActionListener() {
+        buttonCE.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 

@@ -1,9 +1,11 @@
 package model;
 
+import exceptions.DivisionException;
+
 public class TaschenrechnerModel {
 
-    private float ans;
-    private float enteredNumber;
+    private double ans;
+    private double enteredNumber;
 
     public TaschenrechnerModel() {
         this.ans = 0;
@@ -12,25 +14,26 @@ public class TaschenrechnerModel {
 
     public void resetAll() {
         ans = 0;
+        enteredNumber = 0;
     }
 
     public void resetEnteredNumber() {
         enteredNumber = 0;
     }
 
-    public float calculate(Operation operation) {
+    public double calculate(Operation operation) {
         switch (operation) {
             case PLUS -> ans += enteredNumber;
             case MINUS -> ans -= enteredNumber;
             case TIMES -> ans *= enteredNumber;
             case DIVIDE, RECIPROCAL -> ans = divide(operation);
-            case ROOT -> ans = (float) Math.pow(ans, 0.5);
-            case SQUARE -> ans = (float) Math.pow(ans, 2);
+            case ROOT -> ans = Math.pow(ans, 0.5);
+            case SQUARE -> ans = Math.pow(ans, 2);
         }
         return ans;
     }
 
-    private float divide(Operation operation) {
+    private double divide(Operation operation) {
         if (enteredNumber == 0) {
             throw new DivisionException("Versucht durch 0 zu teilen!");
         }
@@ -41,7 +44,7 @@ public class TaschenrechnerModel {
     }
 
     // Getter and Setter
-    public float getAns() {
+    public double getAns() {
         return ans;
     }
 
@@ -49,7 +52,7 @@ public class TaschenrechnerModel {
         this.ans = ans;
     }
 
-    public float getEnteredNumber() {
+    public double getEnteredNumber() {
         return enteredNumber;
     }
 

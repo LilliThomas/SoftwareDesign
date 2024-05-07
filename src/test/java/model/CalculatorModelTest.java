@@ -4,13 +4,13 @@ import org.junit.jupiter.api.BeforeAll;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class TaschenrechnerModelTest {
+class CalculatorModelTest {
 
-    private static TaschenrechnerModel model;
+    private static CalculatorModel model;
 
     @BeforeAll
     static void before() {
-        model = new TaschenrechnerModel();
+        model = new CalculatorModel();
     }
 
     @org.junit.jupiter.api.Test

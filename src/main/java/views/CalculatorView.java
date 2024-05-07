@@ -1,8 +1,10 @@
+package views;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class TaschenrecherGUI extends JFrame{
+public class CalculatorView extends JFrame{
     private JButton buttonMinus;
     private JButton buttonMal;
     private JButton buttonGeteilt;
@@ -28,7 +30,7 @@ public class TaschenrecherGUI extends JFrame{
     private JButton buttonCE;
     private JButton buttonProzent;
 
-    public TaschenrecherGUI(JButton buttonMinus, JButton buttonMal, JButton buttonGeteilt, JButton buttonKlammerZu, JButton buttonZiffer9, JButton buttonZiffer6, JButton buttonZiffer3, JButton buttonKomma, JButton buttonKlammerAuf, JButton buttonZiffer8, JButton buttonZiffer5, JButton buttonZiffer2, JButton buttonZiffer0, JButton buttonZiffer7, JButton buttonWeiterFunktionen, JButton buttonZiffer4, JButton buttonZiffer1, JButton buttonVorzeichen, JButton buttonDel, JButton buttonC, JButton buttonPlus, JButton buttonGleich, JButton buttonCe){
+    public CalculatorView(JButton buttonMinus, JButton buttonMal, JButton buttonGeteilt, JButton buttonKlammerZu, JButton buttonZiffer9, JButton buttonZiffer6, JButton buttonZiffer3, JButton buttonKomma, JButton buttonKlammerAuf, JButton buttonZiffer8, JButton buttonZiffer5, JButton buttonZiffer2, JButton buttonZiffer0, JButton buttonZiffer7, JButton buttonWeiterFunktionen, JButton buttonZiffer4, JButton buttonZiffer1, JButton buttonVorzeichen, JButton buttonDel, JButton buttonC, JButton buttonPlus, JButton buttonGleich, JButton buttonCe){
         this.buttonMinus = buttonMinus;
         this.buttonMal = buttonMal;
         this.buttonGeteilt = buttonGeteilt;

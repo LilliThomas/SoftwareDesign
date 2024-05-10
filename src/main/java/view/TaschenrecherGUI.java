@@ -29,6 +29,7 @@ public class TaschenrecherGUI extends JFrame{
     private JButton buttonCE = new JButton("CE");
     private JButton buttonProzent = new JButton("Prozent");
     private JTextField anzeige = new JTextField();
+    private JPanel btncontainer;
 
     public TaschenrecherGUI() {
         setTitle("Taschenrechner");
@@ -36,6 +37,32 @@ public class TaschenrecherGUI extends JFrame{
         setSize(300, 300);
         setLocationRelativeTo(null);
         setVisible(true);
+        JPanel btncontainer = new JPanel();
+        add(buttonMinus);
+        add(buttonMal);
+        add(buttonGeteilt);
+        add(buttonWurzel);
+        add(buttonZiffer9);
+        add(buttonZiffer6);
+        add(buttonZiffer3);
+        add(buttonKomma);
+        add(buttonQuadrat);
+        add(buttonZiffer8);
+        add(buttonZiffer5);
+        add(buttonZiffer2);
+        add(buttonZiffer0);
+        add(buttonZiffer7);
+        add(buttonWeiterFunktionen);
+        add(buttonZiffer4);
+        add(buttonZiffer1);
+        add(buttonVorzeichen);
+        add(buttonDEL);
+        add(buttonC);
+        add(buttonPlus);
+        add(buttonGleich);
+        add(buttonCE);
+        add(buttonProzent);
+        add(anzeige);
     }
     public void addSubtraktionListener(ActionListener listenForSubtraktionButton) {
         buttonMinus.addActionListener(listenForSubtraktionButton);

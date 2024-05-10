@@ -1,5 +1,6 @@
+package view;
+
 import javax.swing.*;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class TaschenrecherGUI extends JFrame{
@@ -27,6 +28,7 @@ public class TaschenrecherGUI extends JFrame{
     private JButton buttonGleich = new JButton("=");
     private JButton buttonCE = new JButton("CE");
     private JButton buttonProzent = new JButton("Prozent");
+    private JTextField anzeige = new JTextField();
 
     public TaschenrecherGUI() {
         setTitle("Taschenrechner");

@@ -3,208 +3,112 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class TaschenrecherGUI extends JFrame{
-    private JButton buttonMinus;
-    private JButton buttonMal;
-    private JButton buttonGeteilt;
-    private JButton buttonWurzel;
-    private JButton buttonZiffer9;
-    private JButton buttonZiffer6;
-    private JButton buttonZiffer3;
-    private JButton buttonKomma;
-    private JButton buttonQuadrat;
-    private JButton buttonZiffer8;
-    private JButton buttonZiffer5;
-    private JButton buttonZiffer2;
-    private JButton buttonZiffer0;
-    private JButton buttonZiffer7;
-    private JButton buttonWeiterFunktionen;
-    private JButton buttonZiffer4;
-    private JButton buttonZiffer1;
-    private JButton buttonVorzeichen;
-    private JButton buttonDEL;
-    private JButton buttonC;
-    private JButton buttonPlus;
-    private JButton buttonGleich;
-    private JButton buttonCE;
-    private JButton buttonProzent;
+    private JButton buttonMinus = new JButton("-");
+    private JButton buttonMal  = new JButton("*");
+    private JButton buttonGeteilt = new JButton("/");
+    private JButton buttonWurzel = new JButton("sqert");
+    private JButton buttonZiffer9 = new JButton("9");
+    private JButton buttonZiffer6 = new JButton("6");
+    private JButton buttonZiffer3 = new JButton("3");
+    private JButton buttonKomma = new JButton(",");
+    private JButton buttonQuadrat = new JButton("^2");
+    private JButton buttonZiffer8 = new JButton("8");
+    private JButton buttonZiffer5 = new JButton("5");
+    private JButton buttonZiffer2 = new JButton("2");
+    private JButton buttonZiffer0 = new JButton("0");
+    private JButton buttonZiffer7 = new JButton("7");
+    private JButton buttonWeiterFunktionen  = new JButton("Funktionen");
+    private JButton buttonZiffer4 = new JButton("4");
+    private JButton buttonZiffer1 = new JButton("1");
+    private JButton buttonVorzeichen  = new JButton("(-)");
+    private JButton buttonDEL = new JButton("del");
+    private JButton buttonC = new JButton("C");
+    private JButton buttonPlus  = new JButton("+");
+    private JButton buttonGleich = new JButton("=");
+    private JButton buttonCE = new JButton("CE");
+    private JButton buttonProzent = new JButton("Prozent");
 
-    public TaschenrecherGUI(JButton buttonMinus, JButton buttonMal, JButton buttonGeteilt, JButton buttonKlammerZu, JButton buttonZiffer9, JButton buttonZiffer6, JButton buttonZiffer3, JButton buttonKomma, JButton buttonKlammerAuf, JButton buttonZiffer8, JButton buttonZiffer5, JButton buttonZiffer2, JButton buttonZiffer0, JButton buttonZiffer7, JButton buttonWeiterFunktionen, JButton buttonZiffer4, JButton buttonZiffer1, JButton buttonVorzeichen, JButton buttonDel, JButton buttonC, JButton buttonPlus, JButton buttonGleich, JButton buttonCe){
-        this.buttonMinus = buttonMinus;
-        this.buttonMal = buttonMal;
-        this.buttonGeteilt = buttonGeteilt;
-        this.buttonWurzel = buttonKlammerZu;
-        this.buttonZiffer9 = buttonZiffer9;
-        this.buttonZiffer6 = buttonZiffer6;
-        this.buttonZiffer3 = buttonZiffer3;
-        this.buttonKomma = buttonKomma;
-        this.buttonQuadrat = buttonKlammerAuf;
-        this.buttonZiffer8 = buttonZiffer8;
-        this.buttonZiffer5 = buttonZiffer5;
-        this.buttonZiffer2 = buttonZiffer2;
-        this.buttonZiffer0 = buttonZiffer0;
-        this.buttonZiffer7 = buttonZiffer7;
-        this.buttonWeiterFunktionen = buttonWeiterFunktionen;
-        this.buttonZiffer4 = buttonZiffer4;
-        this.buttonZiffer1 = buttonZiffer1;
-        this.buttonVorzeichen = buttonVorzeichen;
-        buttonDEL = buttonDel;
-        this.buttonC = buttonC;
-        this.buttonPlus = buttonPlus;
-        this.buttonGleich = buttonGleich;
-        buttonCE = buttonCe;
+    public TaschenrecherGUI() {
         setTitle("Taschenrechner");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setSize(300,300);
+        setSize(300, 300);
         setLocationRelativeTo(null);
         setVisible(true);
+    }
+    public void addSubtraktionListener(ActionListener listenForSubtraktionButton) {
+        buttonMinus.addActionListener(listenForSubtraktionButton);
+    }
 
+    public void addMultiplikationListener(ActionListener listenForMultiplikationButton) {
+        buttonMal.addActionListener(listenForMultiplikationButton);
+    }
 
-        this.buttonC.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
+    public void addDivisionListener(ActionListener listenForDivisionButton) {
+        buttonGeteilt.addActionListener(listenForDivisionButton);
+    }
+    public void addWurzelListener(ActionListener listenForWurzelButton) {
+        buttonWurzel.addActionListener(listenForWurzelButton);
+    }
+    public void addZiffer9Listener(ActionListener listenForZiffer9Button) {
+        buttonZiffer9.addActionListener(listenForZiffer9Button);
+    }
+    public void addZiffer6Listener(ActionListener listenForZiffer6Button) {
+        buttonZiffer6.addActionListener(listenForZiffer6Button);
+    }
+    public void addZiffer3Listener(ActionListener listenForZiffer3Button) {
+        buttonZiffer3.addActionListener(listenForZiffer3Button);
+    }
+    public void addKommaListener(ActionListener listenForKommaButton) {
+        buttonKomma.addActionListener(listenForKommaButton);
+    }
+    public void addQuadratListener(ActionListener listenForQuadratButton) {
+        buttonQuadrat.addActionListener(listenForQuadratButton);
+    }
+    public void addZiffer8Listener(ActionListener listenForZiffer8Button) {
+        buttonZiffer8.addActionListener(listenForZiffer8Button);
+    }
+    public void addZiffer5Listener(ActionListener listenForZiffer5Button) {
+        buttonZiffer5.addActionListener(listenForZiffer5Button);
+    }
+    public void addZiffer2Listener(ActionListener listenForZiffer2Button) {
+        buttonZiffer2.addActionListener(listenForZiffer2Button);
+    }
+    public void addZiffer0Listener(ActionListener listenForZiffer0Button) {
+        buttonZiffer0.addActionListener(listenForZiffer0Button);
+    }
+    public void addZiffer7Listener(ActionListener listenForZiffer7Button) {
+        buttonZiffer7.addActionListener(listenForZiffer7Button);
+    }
+    public void addZiffer4Listener(ActionListener listenForZiffer4Button) {
+        buttonZiffer4.addActionListener(listenForZiffer4Button);
+    }
+    public void addZiffer1Listener(ActionListener listenForZiffer1Button) {
+        buttonZiffer1.addActionListener(listenForZiffer1Button);
+    }
+    public void addVorzeichenListener(ActionListener listenForVorzeichenButton) {
+        buttonVorzeichen.addActionListener(listenForVorzeichenButton);
+    }
+    public void addDELListener(ActionListener listenForDELButton) {
 
-            }
-        });
-        buttonDEL.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-            }
-        });
-        buttonWeiterFunktionen.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-            }
-        });
-        buttonKlammerAuf.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-            }
-        });
-        buttonKlammerZu.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-            }
-        });
-        buttonGeteilt.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-            }
-        });
-        buttonZiffer7.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-            }
-        });
-        buttonZiffer8.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-            }
-        });
-        buttonZiffer9.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-            }
-        });
-        buttonMal.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-            }
-        });
-        buttonZiffer4.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-            }
-        });
-        buttonZiffer5.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-            }
-        });
-        buttonZiffer6.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-            }
-        });
-        buttonMinus.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-            }
-        });
-        buttonZiffer1.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-            }
-        });
-        buttonZiffer2.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-            }
-        });
-        buttonZiffer3.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-            }
-        });
-        buttonVorzeichen.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-            }
-        });
-        buttonZiffer0.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-            }
-        });
-        buttonKomma.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-            }
-        });
-        buttonPlus.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-            }
-        });
-        buttonGleich.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-            }
-        });
-
-        buttonCE.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-            }
-        });
-
-        buttonProzent.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-            }
-        });
+        buttonDEL.addActionListener(listenForDELButton);
+    }
+    public void addCListener(ActionListener listenForCButton) {
+        buttonC.addActionListener(listenForCButton);
+    }
+    public void addErgebnisListener(ActionListener listenForErgebnisButton) {
+        buttonGleich.addActionListener(listenForErgebnisButton);
+    }
+    public void addCEListener(ActionListener listenForCEButton) {
+        buttonCE.addActionListener(listenForCEButton);
+    }
+    public void addProzentListener(ActionListener listenForProzentButton) {
+        buttonProzent.addActionListener(listenForProzentButton);
+    }
+     public void addAdditionListener(ActionListener listenForAdditionButton) {
+        buttonPlus.addActionListener(listenForAdditionButton);
+     }
+    public void displayErrorMessage(String errorMessage){
+         JOptionPane.showMessageDialog(this, errorMessage);
     }
 
 }

@@ -1,6 +1,7 @@
 package view;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionListener;
 
 public class TaschenrecherGUI extends JFrame{
@@ -28,41 +29,54 @@ public class TaschenrecherGUI extends JFrame{
     private JButton buttonGleich = new JButton("=");
     private JButton buttonCE = new JButton("CE");
     private JButton buttonProzent = new JButton("Prozent");
+    private JPanel textcontainer;
+    private JPanel buttoncontainer;
+    private JPanel container;
     private JTextField anzeige = new JTextField();
-    private JPanel btncontainer;
 
     public TaschenrecherGUI() {
+
         setTitle("Taschenrechner");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setSize(300, 300);
+        setSize(500, 200);
         setLocationRelativeTo(null);
         setVisible(true);
-        JPanel btncontainer = new JPanel();
-        add(buttonMinus);
-        add(buttonMal);
-        add(buttonGeteilt);
-        add(buttonWurzel);
-        add(buttonZiffer9);
-        add(buttonZiffer6);
-        add(buttonZiffer3);
-        add(buttonKomma);
-        add(buttonQuadrat);
-        add(buttonZiffer8);
-        add(buttonZiffer5);
-        add(buttonZiffer2);
-        add(buttonZiffer0);
-        add(buttonZiffer7);
-        add(buttonWeiterFunktionen);
-        add(buttonZiffer4);
-        add(buttonZiffer1);
-        add(buttonVorzeichen);
-        add(buttonDEL);
-        add(buttonC);
-        add(buttonPlus);
-        add(buttonGleich);
-        add(buttonCE);
-        add(buttonProzent);
-        add(anzeige);
+        JPanel textcontainer = new JPanel();
+        JPanel buttoncontainer = new JPanel();
+
+        JPanel container = new JPanel();
+        textcontainer.setAlignmentX(Component.TOP_ALIGNMENT);
+        //container.setLayout(new BoxLayout(container, BoxLayout.Y_AXIS));
+        buttoncontainer.setLayout(new GridLayout(6,4));
+        //buttoncontainer.setAlignmentY(CENTER_ALIGNMENT);
+        buttoncontainer.add(buttonMinus);
+        buttoncontainer.add(buttonMal);
+        buttoncontainer.add(buttonGeteilt);
+        buttoncontainer.add(buttonWurzel);
+        buttoncontainer.add(buttonZiffer9);
+        buttoncontainer.add(buttonZiffer6);
+        buttoncontainer.add(buttonZiffer3);
+        buttoncontainer.add(buttonKomma);
+        buttoncontainer.add(buttonQuadrat);
+        buttoncontainer.add(buttonZiffer8);
+        buttoncontainer.add(buttonZiffer5);
+        buttoncontainer.add(buttonZiffer2);
+        buttoncontainer.add(buttonZiffer0);
+        buttoncontainer.add(buttonZiffer7);
+        buttoncontainer.add(buttonWeiterFunktionen);
+        buttoncontainer.add(buttonZiffer4);
+        buttoncontainer.add(buttonZiffer1);
+        buttoncontainer.add(buttonVorzeichen);
+        buttoncontainer.add(buttonDEL);
+        buttoncontainer.add(buttonC);
+        buttoncontainer.add(buttonPlus);
+        buttoncontainer.add(buttonGleich);
+        buttoncontainer.add(buttonCE);
+        buttoncontainer.add(buttonProzent);
+        textcontainer.add(anzeige);
+        container.add(textcontainer, BorderLayout.CENTER);
+        container.add(buttoncontainer);
+        add(container);
     }
     public void addSubtraktionListener(ActionListener listenForSubtraktionButton) {
         buttonMinus.addActionListener(listenForSubtraktionButton);

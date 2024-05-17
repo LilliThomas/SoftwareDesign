@@ -20,7 +20,7 @@ public class TaschenrecherGUI extends JFrame{
     JButton mal = new JButton("*");
     JButton div = new JButton("/");
     JButton gleich = new JButton("=");
-    JButton komma = new JButton(",");
+    JButton komma = new JButton(".");
     JButton vorzeichen = new JButton("(-)");
     JButton sqrt = new JButton("sqrt");
     JButton history = new JButton("history");

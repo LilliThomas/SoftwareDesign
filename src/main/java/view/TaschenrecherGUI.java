@@ -15,35 +15,39 @@ public class TaschenrecherGUI extends JFrame{
     JButton btn8 = new JButton("8");
     JButton btn9 = new JButton("9");
     JButton btn0 = new JButton("0");
-    JButton plus = new JButton("+");
-    JButton minus = new JButton("-");
-    JButton mal = new JButton("*");
-    JButton div = new JButton("/");
-    JButton gleich = new JButton("=");
-    JButton komma = new JButton(".");
-    JButton vorzeichen = new JButton("(-)");
+    JButton btnplus = new JButton("+");
+    JButton btnminus = new JButton("-");
+    JButton btnmultiply = new JButton("*");
+    JButton btndiv = new JButton("/");
+    JButton btnequal = new JButton("=");
+    JButton btncomma = new JButton(".");
+    JButton btnsign = new JButton("(-)");
     JButton sqrt = new JButton("sqrt");
     JButton history = new JButton("history");
     JButton btnClear = new JButton("clear");
-    JButton btnWeitereFunktionen = new JButton("weitere Funktionen");
+    JButton btnMoreFunctions = new JButton("weitere Funktionen");
     JButton btnQuadrat = new JButton("^2");
     JButton btnDel = new JButton("del");
     JButton btnSin = new JButton("sin");
     JButton btnCos = new JButton("cos");
     JButton btnTan = new JButton("tan");
-    JTextArea textArea = new JTextArea();
+    JTextArea textAreaResult = new JTextArea();
+    JTextArea textAreaCalculation = new JTextArea();
+
+
 
     public TaschenrecherGUI() {
 
         setTitle("Taschenrechner");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(500, 250);
+        JPanel panelText = new JPanel();
 
-        JPanel panel = new JPanel();
+        JPanel panelFunction = new JPanel();
 
-
-        add(textArea, BorderLayout.NORTH);
-
+        panelText.add(textAreaCalculation);
+        panelText.add(textAreaResult);
+        add(panelText, BorderLayout.NORTH);
 
         JPanel grid = new JPanel();
         grid.setLayout(new GridLayout(6, 4));
@@ -51,9 +55,9 @@ public class TaschenrecherGUI extends JFrame{
 
 
 
-        panel.add(btnWeitereFunktionen);
-        panel.add(history);
-        add(panel, BorderLayout.CENTER);
+        panelFunction.add(btnMoreFunctions);
+        panelFunction.add(history);
+        add(panelFunction, BorderLayout.CENTER);
 
 
         grid.add(btnSin);
@@ -64,23 +68,23 @@ public class TaschenrecherGUI extends JFrame{
         grid.add(btnTan);
         grid.add(btnQuadrat);
         grid.add(sqrt);
-        grid.add(div);
+        grid.add(btndiv);
         grid.add(btn7);
         grid.add(btn8);
         grid.add(btn9);
-        grid.add(mal);
+        grid.add(btnmultiply);
         grid.add(btn4);
         grid.add(btn5);
         grid.add(btn6);
-        grid.add(minus);
+        grid.add(btnminus);
         grid.add(btn1);
         grid.add(btn2);
         grid.add(btn3);
-        grid.add(plus);
-        grid.add(vorzeichen);
+        grid.add(btnplus);
+        grid.add(btnsign);
         grid.add(btn0);
-        grid.add(komma);
-        grid.add(gleich);
+        grid.add(btncomma);
+        grid.add(btnequal);
         add(grid, BorderLayout.SOUTH);
 
 
@@ -90,8 +94,11 @@ public class TaschenrecherGUI extends JFrame{
 
 
     }
-    public void setText(String text) {
-        textArea.setText(text);
+    public void setTextResult(String text) {
+        textAreaResult.setText(text);
+    }
+    public void setTextCalculation(String text) {
+        textAreaCalculation.setText(text);
     }
 
     public void addButtonListener(ActionListener listener) {
@@ -105,17 +112,17 @@ public class TaschenrecherGUI extends JFrame{
         btn8.addActionListener(listener);
         btn9.addActionListener(listener);
         btn0.addActionListener(listener);
-        plus.addActionListener(listener);
-        minus.addActionListener(listener);
-        mal.addActionListener(listener);
-        div.addActionListener(listener);
-        gleich.addActionListener(listener);
-        komma.addActionListener(listener);
-        vorzeichen.addActionListener(listener);
+        btnplus.addActionListener(listener);
+        btnminus.addActionListener(listener);
+        btnmultiply.addActionListener(listener);
+        btndiv.addActionListener(listener);
+        btnequal.addActionListener(listener);
+        btncomma.addActionListener(listener);
+        btnsign.addActionListener(listener);
         sqrt.addActionListener(listener);
         history.addActionListener(listener);
         btnClear.addActionListener(listener);
-        btnWeitereFunktionen.addActionListener(listener);
+        btnMoreFunctions.addActionListener(listener);
         btnQuadrat.addActionListener(listener);
         btnDel.addActionListener(listener);
         btnSin.addActionListener(listener);

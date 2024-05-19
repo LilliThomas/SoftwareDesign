@@ -1,114 +1,136 @@
 package view;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionListener;
 
 public class TaschenrecherGUI extends JFrame{
-    private JButton buttonMinus = new JButton("-");
-    private JButton buttonMal  = new JButton("*");
-    private JButton buttonGeteilt = new JButton("/");
-    private JButton buttonWurzel = new JButton("sqert");
-    private JButton buttonZiffer9 = new JButton("9");
-    private JButton buttonZiffer6 = new JButton("6");
-    private JButton buttonZiffer3 = new JButton("3");
-    private JButton buttonKomma = new JButton(",");
-    private JButton buttonQuadrat = new JButton("^2");
-    private JButton buttonZiffer8 = new JButton("8");
-    private JButton buttonZiffer5 = new JButton("5");
-    private JButton buttonZiffer2 = new JButton("2");
-    private JButton buttonZiffer0 = new JButton("0");
-    private JButton buttonZiffer7 = new JButton("7");
-    private JButton buttonWeiterFunktionen  = new JButton("Funktionen");
-    private JButton buttonZiffer4 = new JButton("4");
-    private JButton buttonZiffer1 = new JButton("1");
-    private JButton buttonVorzeichen  = new JButton("(-)");
-    private JButton buttonDEL = new JButton("del");
-    private JButton buttonC = new JButton("C");
-    private JButton buttonPlus  = new JButton("+");
-    private JButton buttonGleich = new JButton("=");
-    private JButton buttonCE = new JButton("CE");
-    private JButton buttonProzent = new JButton("Prozent");
-    private JTextField anzeige = new JTextField();
+    JButton btn1 = new JButton("1");
+    JButton btn2 = new JButton("2");
+    JButton btn3 = new JButton("3");
+    JButton btn4 = new JButton("4");
+    JButton btn5 = new JButton("5");
+    JButton btn6 = new JButton("6");
+    JButton btn7 = new JButton("7");
+    JButton btn8 = new JButton("8");
+    JButton btn9 = new JButton("9");
+    JButton btn0 = new JButton("0");
+    JButton btnPlus = new JButton("+");
+    JButton btnMinus = new JButton("-");
+    JButton btnMultiply = new JButton("*");
+    JButton btnDiv = new JButton("/");
+    JButton btnEqual = new JButton("=");
+    JButton btnComma = new JButton(".");
+    JButton btnSign = new JButton("(-)");
+    JButton btnSqrt = new JButton("sqrt");
+    JButton btnHistory = new JButton("history");
+    JButton btnClear = new JButton("clear");
+    JButton btnMoreFunctions = new JButton("weitere Funktionen");
+    JButton btnQuadrat = new JButton("^2");
+    JButton btnDel = new JButton("del");
+    JButton btnSin = new JButton("sin");
+    JButton btnCos = new JButton("cos");
+    JButton btnTan = new JButton("tan");
+    JTextArea textAreaResult = new JTextArea();
+    JTextArea textAreaCalculation = new JTextArea();
+
+
 
     public TaschenrecherGUI() {
+
         setTitle("Taschenrechner");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setSize(300, 300);
+        setSize(500, 250);
+        JPanel panelText = new JPanel();
+
+        JPanel panelFunction = new JPanel();
+
+        panelText.add(textAreaCalculation);
+        panelText.add(textAreaResult);
+        add(panelText, BorderLayout.NORTH);
+
+        JPanel grid = new JPanel();
+        grid.setLayout(new GridLayout(6, 4));
+
+
+
+
+        panelFunction.add(btnMoreFunctions);
+        panelFunction.add(btnHistory);
+        add(panelFunction, BorderLayout.CENTER);
+
+
+        grid.add(btnSin);
+        grid.add(btnCos);
+        grid.add(btnClear);
+        grid.add(btnDel);
+
+        grid.add(btnTan);
+        grid.add(btnQuadrat);
+        grid.add(btnSqrt);
+        grid.add(btnDiv);
+        grid.add(btn7);
+        grid.add(btn8);
+        grid.add(btn9);
+        grid.add(btnMultiply);
+        grid.add(btn4);
+        grid.add(btn5);
+        grid.add(btn6);
+        grid.add(btnMinus);
+        grid.add(btn1);
+        grid.add(btn2);
+        grid.add(btn3);
+        grid.add(btnPlus);
+        grid.add(btnSign);
+        grid.add(btn0);
+        grid.add(btnComma);
+        grid.add(btnEqual);
+        add(grid, BorderLayout.SOUTH);
+
+
         setLocationRelativeTo(null);
+
         setVisible(true);
+
+
     }
-    public void addSubtraktionListener(ActionListener listenForSubtraktionButton) {
-        buttonMinus.addActionListener(listenForSubtraktionButton);
+    public void setTextResult(String text) {
+        textAreaResult.setText(text);
+    }
+    public void setTextCalculation(String text) {
+        textAreaCalculation.setText(text);
     }
 
-    public void addMultiplikationListener(ActionListener listenForMultiplikationButton) {
-        buttonMal.addActionListener(listenForMultiplikationButton);
+    public void addButtonListener(ActionListener listener) {
+        btn1.addActionListener(listener);
+        btn2.addActionListener(listener);
+        btn3.addActionListener(listener);
+        btn4.addActionListener(listener);
+        btn5.addActionListener(listener);
+        btn6.addActionListener(listener);
+        btn7.addActionListener(listener);
+        btn8.addActionListener(listener);
+        btn9.addActionListener(listener);
+        btn0.addActionListener(listener);
+        btnPlus.addActionListener(listener);
+        btnMinus.addActionListener(listener);
+        btnMultiply.addActionListener(listener);
+        btnDiv.addActionListener(listener);
+        btnEqual.addActionListener(listener);
+        btnComma.addActionListener(listener);
+        btnSign.addActionListener(listener);
+        btnSqrt.addActionListener(listener);
+        btnHistory.addActionListener(listener);
+        btnClear.addActionListener(listener);
+        btnMoreFunctions.addActionListener(listener);
+        btnQuadrat.addActionListener(listener);
+        btnDel.addActionListener(listener);
+        btnSin.addActionListener(listener);
+        btnCos.addActionListener(listener);
+        btnTan.addActionListener(listener);
     }
 
-    public void addDivisionListener(ActionListener listenForDivisionButton) {
-        buttonGeteilt.addActionListener(listenForDivisionButton);
-    }
-    public void addWurzelListener(ActionListener listenForWurzelButton) {
-        buttonWurzel.addActionListener(listenForWurzelButton);
-    }
-    public void addZiffer9Listener(ActionListener listenForZiffer9Button) {
-        buttonZiffer9.addActionListener(listenForZiffer9Button);
-    }
-    public void addZiffer6Listener(ActionListener listenForZiffer6Button) {
-        buttonZiffer6.addActionListener(listenForZiffer6Button);
-    }
-    public void addZiffer3Listener(ActionListener listenForZiffer3Button) {
-        buttonZiffer3.addActionListener(listenForZiffer3Button);
-    }
-    public void addKommaListener(ActionListener listenForKommaButton) {
-        buttonKomma.addActionListener(listenForKommaButton);
-    }
-    public void addQuadratListener(ActionListener listenForQuadratButton) {
-        buttonQuadrat.addActionListener(listenForQuadratButton);
-    }
-    public void addZiffer8Listener(ActionListener listenForZiffer8Button) {
-        buttonZiffer8.addActionListener(listenForZiffer8Button);
-    }
-    public void addZiffer5Listener(ActionListener listenForZiffer5Button) {
-        buttonZiffer5.addActionListener(listenForZiffer5Button);
-    }
-    public void addZiffer2Listener(ActionListener listenForZiffer2Button) {
-        buttonZiffer2.addActionListener(listenForZiffer2Button);
-    }
-    public void addZiffer0Listener(ActionListener listenForZiffer0Button) {
-        buttonZiffer0.addActionListener(listenForZiffer0Button);
-    }
-    public void addZiffer7Listener(ActionListener listenForZiffer7Button) {
-        buttonZiffer7.addActionListener(listenForZiffer7Button);
-    }
-    public void addZiffer4Listener(ActionListener listenForZiffer4Button) {
-        buttonZiffer4.addActionListener(listenForZiffer4Button);
-    }
-    public void addZiffer1Listener(ActionListener listenForZiffer1Button) {
-        buttonZiffer1.addActionListener(listenForZiffer1Button);
-    }
-    public void addVorzeichenListener(ActionListener listenForVorzeichenButton) {
-        buttonVorzeichen.addActionListener(listenForVorzeichenButton);
-    }
-    public void addDELListener(ActionListener listenForDELButton) {
 
-        buttonDEL.addActionListener(listenForDELButton);
-    }
-    public void addCListener(ActionListener listenForCButton) {
-        buttonC.addActionListener(listenForCButton);
-    }
-    public void addErgebnisListener(ActionListener listenForErgebnisButton) {
-        buttonGleich.addActionListener(listenForErgebnisButton);
-    }
-    public void addCEListener(ActionListener listenForCEButton) {
-        buttonCE.addActionListener(listenForCEButton);
-    }
-    public void addProzentListener(ActionListener listenForProzentButton) {
-        buttonProzent.addActionListener(listenForProzentButton);
-    }
-     public void addAdditionListener(ActionListener listenForAdditionButton) {
-        buttonPlus.addActionListener(listenForAdditionButton);
-     }
     public void displayErrorMessage(String errorMessage){
          JOptionPane.showMessageDialog(this, errorMessage);
     }

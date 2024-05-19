@@ -15,15 +15,15 @@ public class TaschenrecherGUI extends JFrame{
     JButton btn8 = new JButton("8");
     JButton btn9 = new JButton("9");
     JButton btn0 = new JButton("0");
-    JButton btnplus = new JButton("+");
-    JButton btnminus = new JButton("-");
-    JButton btnmultiply = new JButton("*");
-    JButton btndiv = new JButton("/");
-    JButton btnequal = new JButton("=");
-    JButton btncomma = new JButton(".");
-    JButton btnsign = new JButton("(-)");
-    JButton sqrt = new JButton("sqrt");
-    JButton history = new JButton("history");
+    JButton btnPlus = new JButton("+");
+    JButton btnMinus = new JButton("-");
+    JButton btnMultiply = new JButton("*");
+    JButton btnDiv = new JButton("/");
+    JButton btnEqual = new JButton("=");
+    JButton btnComma = new JButton(".");
+    JButton btnSign = new JButton("(-)");
+    JButton btnSqrt = new JButton("sqrt");
+    JButton btnHistory = new JButton("history");
     JButton btnClear = new JButton("clear");
     JButton btnMoreFunctions = new JButton("weitere Funktionen");
     JButton btnQuadrat = new JButton("^2");
@@ -56,7 +56,7 @@ public class TaschenrecherGUI extends JFrame{
 
 
         panelFunction.add(btnMoreFunctions);
-        panelFunction.add(history);
+        panelFunction.add(btnHistory);
         add(panelFunction, BorderLayout.CENTER);
 
 
@@ -67,24 +67,24 @@ public class TaschenrecherGUI extends JFrame{
 
         grid.add(btnTan);
         grid.add(btnQuadrat);
-        grid.add(sqrt);
-        grid.add(btndiv);
+        grid.add(btnSqrt);
+        grid.add(btnDiv);
         grid.add(btn7);
         grid.add(btn8);
         grid.add(btn9);
-        grid.add(btnmultiply);
+        grid.add(btnMultiply);
         grid.add(btn4);
         grid.add(btn5);
         grid.add(btn6);
-        grid.add(btnminus);
+        grid.add(btnMinus);
         grid.add(btn1);
         grid.add(btn2);
         grid.add(btn3);
-        grid.add(btnplus);
-        grid.add(btnsign);
+        grid.add(btnPlus);
+        grid.add(btnSign);
         grid.add(btn0);
-        grid.add(btncomma);
-        grid.add(btnequal);
+        grid.add(btnComma);
+        grid.add(btnEqual);
         add(grid, BorderLayout.SOUTH);
 
 
@@ -112,15 +112,15 @@ public class TaschenrecherGUI extends JFrame{
         btn8.addActionListener(listener);
         btn9.addActionListener(listener);
         btn0.addActionListener(listener);
-        btnplus.addActionListener(listener);
-        btnminus.addActionListener(listener);
-        btnmultiply.addActionListener(listener);
-        btndiv.addActionListener(listener);
-        btnequal.addActionListener(listener);
-        btncomma.addActionListener(listener);
-        btnsign.addActionListener(listener);
-        sqrt.addActionListener(listener);
-        history.addActionListener(listener);
+        btnPlus.addActionListener(listener);
+        btnMinus.addActionListener(listener);
+        btnMultiply.addActionListener(listener);
+        btnDiv.addActionListener(listener);
+        btnEqual.addActionListener(listener);
+        btnComma.addActionListener(listener);
+        btnSign.addActionListener(listener);
+        btnSqrt.addActionListener(listener);
+        btnHistory.addActionListener(listener);
         btnClear.addActionListener(listener);
         btnMoreFunctions.addActionListener(listener);
         btnQuadrat.addActionListener(listener);

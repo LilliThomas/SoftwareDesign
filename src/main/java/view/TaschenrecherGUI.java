@@ -40,10 +40,10 @@ public class TaschenrecherGUI extends JFrame{
 
         setTitle("Taschenrechner");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setSize(500, 250);
-        JPanel panelText = new JPanel();
+        setSize(500, 280);
+        JPanel panelText = new JPanel(new GridLayout(4, 1));
 
-        JPanel panelFunction = new JPanel();
+        JPanel panelFunction = new JPanel(new GridLayout(1, 1));
 
         panelText.add(textAreaCalculation);
         panelText.add(textAreaResult);
@@ -57,7 +57,7 @@ public class TaschenrecherGUI extends JFrame{
 
         panelFunction.add(btnMoreFunctions);
         panelFunction.add(btnHistory);
-        add(panelFunction, BorderLayout.CENTER);
+        add(panelFunction);
 
 
         grid.add(btnSin);

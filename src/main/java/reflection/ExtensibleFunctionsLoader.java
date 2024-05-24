@@ -10,13 +10,13 @@ import org.reflections.Reflections;
 public class ExtensibleFunctionsLoader {
     private static final String COULD_NOT_BE_FOUND = " could not be found.";
 
-    public Set<Class<? extends CalculatorFunction>> loadExtensibleFunctionSubClasses() {
+    public Set<Class<? extends CalculatorFunction>> loadCalculatorFunctionSubClasses() {
         Reflections reflections = new Reflections(CalculatorFunction.class);
         return reflections.getSubTypesOf(CalculatorFunction.class);
     }
 
     public Class<? extends CalculatorFunction> getSpecificClass(String className) {
-        Set<Class<? extends CalculatorFunction>> subClasses = loadExtensibleFunctionSubClasses();
+        Set<Class<? extends CalculatorFunction>> subClasses = loadCalculatorFunctionSubClasses();
         for (Class clazz : subClasses) {
             if (clazz.getSimpleName().equals(className)) {
                 return clazz;
@@ -26,7 +26,7 @@ public class ExtensibleFunctionsLoader {
     }
 
     public Method[] getMethodsFromSpecificClass(String clazz) {
-        for (Class c : loadExtensibleFunctionSubClasses()) {
+        for (Class c : loadCalculatorFunctionSubClasses()) {
             if (c.getSimpleName().equals(clazz)) {
                 return c.getDeclaredMethods();
             }

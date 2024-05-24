@@ -25,8 +25,10 @@ public class TaschenrechnerModel {
         loadExtensibleFunctions();
     }
 
-    private void loadExtensibleFunctions() {
+    // TODO: brauchen wir überhaupt so eine Methode?
+    private Set<Class<? extends CalculatorFunction>> loadExtensibleFunctions() {
         this.extensibleFunctionsLoader = new ExtensibleFunctionsLoader();
+        return extensibleFunctionsLoader.loadCalculatorFunctionSubClasses();
     }
 
     public void resetAll() {

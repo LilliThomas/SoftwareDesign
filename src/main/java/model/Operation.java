@@ -1,15 +1,30 @@
 package model;
 
+import java.util.Arrays;
+import java.util.Optional;
+
 public enum Operation {
-    PLUS,
-    MINUS,
-    TIMES,
-    DIVIDE,
-    SQUARE,
-    ROOT,
-    RECIPROCAL,
-    SIN,
-    COS,
-    TAN,
-    EXTRA
+    PLUS("+"),
+    MINUS("-"),
+    TIMES("*"),
+    DIVIDE("/"),
+    SQUARE("^2"),
+    ROOT("^(1/2)"),
+
+    EXTRA("extra");
+
+    private String sign;
+
+    Operation(String sign) {
+        this.sign = sign;
+    }
+
+    public String getSign() {
+        return sign;
+    }
+
+    public static Operation getBySign(String sign) {
+        var optionalOperation =  Arrays.stream(Operation.values()).filter(operation -> operation.sign.equals(sign)).findFirst();
+        return optionalOperation.orElse(null);
+    }
 }

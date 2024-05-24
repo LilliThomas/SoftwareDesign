@@ -2,7 +2,7 @@ package org.example;
 
 import controllers.CalculatorController;
 import model.CalculatorModel;
-import views.CalculatorView;
+import view.CalculatorView;
 
 public class Main {
     public static void main(String[] args) {

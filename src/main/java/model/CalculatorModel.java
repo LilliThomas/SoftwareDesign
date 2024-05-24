@@ -96,7 +96,7 @@ public class CalculatorModel {
         return enteredNumber;
     }
 
-    public void setEnteredNumber(float enteredNumber) {
+    public void setEnteredNumber(double enteredNumber) {
         pclSupport.firePropertyChange(Constants.PCL_ENTERED_NUMBER, this.enteredNumber, enteredNumber);
         this.enteredNumber = enteredNumber;
     }
@@ -109,13 +109,15 @@ public class CalculatorModel {
         this.operation = operation;
     }
 
-    public void setCalculationString() {
+    public void setCalculationString(CalculationText calculationText) {
+
+/*
         String string = ans + " " + operation.getSign();
         if (enteredNumber != 0) {
             string = string + " " + enteredNumber + " =";
-        }
-        pclSupport.firePropertyChange(Constants.PCL_CALCULATION_STRING, this.calculationString, string);
-        this.calculationString = string;
+        }*/
+        pclSupport.firePropertyChange(Constants.PCL_CALCULATION_STRING, this.calculationString, calculationText.getCalculationText());
+        this.calculationString = calculationText.getCalculationText();
     }
 
     public void addPropertyChangeListener(PropertyChangeListener pcl) {

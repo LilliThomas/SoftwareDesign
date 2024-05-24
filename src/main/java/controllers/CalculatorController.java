@@ -1,6 +1,7 @@
 package controllers;
 
 import exceptions.DivisionException;
+import model.CalculationText;
 import model.CalculatorModel;
 import model.Operation;
 import view.CalculatorView;
@@ -10,6 +11,17 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
 public class CalculatorController implements PropertyChangeListener {
+
+    /**
+     * State pattern nutzen für views
+     * https://www.tutorialspoint.com/design_pattern/state_pattern.htm
+     *
+     * Builder pattern nutzen für calculationString (erweiterung vom stringbuilder)
+     *
+     * observer pattern ist drinne
+     *
+     *
+     */
 
     private final CalculatorView view;
     private final CalculatorModel model;
@@ -50,26 +62,44 @@ public class CalculatorController implements PropertyChangeListener {
                 return;
             }
             String clickedOperation = ((JButton) l.getSource()).getText();
+            double enteredNumber = Double.parseDouble(view.getTextAreaResult());
+            double ans = Double.parseDouble(view.getTextAreaResult());
+            Operation operation = mapInputToOperation(clickedOperation);
 
-            model.setEnteredNumber(Float.parseFloat(view.getTextAreaResult()));
-            model.setAns(Float.parseFloat(view.getTextAreaResult()));
-            model.setOperation(mapInputToOperation(clickedOperation));
+            model.setEnteredNumber(enteredNumber);
+            model.setAns(ans);
+            model.setOperation(operation);
             model.resetEnteredNumber();
 
-            model.setCalculationString();
+            CalculationText calculationText = new CalculationText().builder()
+                    .setAns(ans)
+                    .setEnteredNumber(enteredNumber)
+                    .setOperationSign(operation.getSign())
+                    .build();
+
+            model.setCalculationString(calculationText);
             hasEnteredNumber = false;
             isInEqualsMode = false;
         });
 
         view.addEqualsButtonListener(l -> {
             isInEqualsMode = true;
+
+            double enteredNumber = Double.parseDouble(view.getTextAreaResult());
+            double ans = Double.parseDouble(view.getTextAreaResult());
+
             if (hasEnteredNumber) {
-                model.setEnteredNumber(Float.parseFloat(view.getTextAreaResult()));
+                model.setEnteredNumber(enteredNumber);
             } else {
-                model.setAns(Float.parseFloat(view.getTextAreaResult()));
+                model.setAns(ans);
             }
 
-            model.setCalculationString();
+            CalculationText calculationText = new CalculationText().builder()
+                    .setAns(ans)
+                    .setEnteredNumber(enteredNumber)
+                    .build();
+
+            model.setCalculationString(calculationText);
 
             model.calculate();
 
@@ -77,17 +107,27 @@ public class CalculatorController implements PropertyChangeListener {
         });
 
         view.addInverseButtonListener(l -> {
-            model.setEnteredNumber(Float.parseFloat(view.getTextAreaResult()) * (-1));
+            model.setEnteredNumber(Double.parseDouble(view.getTextAreaResult()) * (-1));
         });
 
         view.addDirectOperationButtonListener(l -> {
             isInEqualsMode = true;
-            String clickedOperation = ((JButton) l.getSource()).getText();
 
-            model.setAns(Float.parseFloat(view.getTextAreaResult()));
-            model.setOperation(mapInputToOperation(clickedOperation));
+            String clickedOperation = ((JButton) l.getSource()).getText();
+            double ans = Double.parseDouble(view.getTextAreaResult());
+            Operation operation = mapInputToOperation(clickedOperation);
+
+            model.setAns(ans);
+            model.setOperation(operation);
             model.resetEnteredNumber();
-            model.setCalculationString();
+
+            CalculationText calculationText = new CalculationText().builder()
+                    .setAns(ans)
+                    .setOperationSign(operation.getSign())
+                    .build();
+
+            model.setCalculationString(calculationText);
+
             model.calculate();
         });
 
@@ -105,8 +145,7 @@ public class CalculatorController implements PropertyChangeListener {
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
         switch (evt.getPropertyName()) {
-            case "enteredNumber" -> view.setTextResult(String.valueOf(evt.getNewValue()));
-            case "ans" -> view.setTextResult(String.valueOf(evt.getNewValue()));
+            case "enteredNumber", "ans" -> view.setTextResult(String.valueOf(evt.getNewValue()));
             case "calculationString" -> view.setTextCalculation(String.valueOf(evt.getNewValue()));
             default -> throw new RuntimeException();
         }

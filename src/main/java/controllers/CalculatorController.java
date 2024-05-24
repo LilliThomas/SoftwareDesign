@@ -54,6 +54,8 @@ public class CalculatorController implements PropertyChangeListener {
             model.setEnteredNumber(Float.parseFloat(view.getTextAreaResult()));
             model.setAns(Float.parseFloat(view.getTextAreaResult()));
             model.setOperation(mapInputToOperation(clickedOperation));
+            model.resetEnteredNumber();
+
             model.setCalculationString();
             hasEnteredNumber = false;
             isInEqualsMode = false;
@@ -84,6 +86,7 @@ public class CalculatorController implements PropertyChangeListener {
 
             model.setAns(Float.parseFloat(view.getTextAreaResult()));
             model.setOperation(mapInputToOperation(clickedOperation));
+            model.resetEnteredNumber();
             model.setCalculationString();
             model.calculate();
         });

@@ -107,8 +107,6 @@ public class CalculatorModel {
     public void setOperation(Operation operation) {
         pclSupport.firePropertyChange(Constants.PCL_ANS, this.operation, operation.getSign());
         this.operation = operation;
-        resetEnteredNumber();
-
     }
 
     public void setCalculationString() {

@@ -1,20 +1,33 @@
 package model;
 
 import exceptions.DivisionException;
+import extensible.functions.CalculatorFunction;
 import extensible.functions.CosFunction;
 import extensible.functions.SinFunction;
 import extensible.functions.TanFunction;
+import reflection.ExtensibleFunctionsLoader;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.Set;
 
 public class TaschenrechnerModel {
 
     private double ans;
     private double enteredNumber;
+    private ExtensibleFunctionsLoader extensibleFunctionsLoader;
+    private static final String CALCULATE = "calculate";
+    private static final String GET_CAPTION = "getCaption";
+
     public TaschenrechnerModel() {
         this.ans = 0;
         this.enteredNumber = 0;
+        loadExtensibleFunctions();
+    }
+
+    private void loadExtensibleFunctions() {
+        this.extensibleFunctionsLoader = new ExtensibleFunctionsLoader();
+        this.extensibleFunctions = extensibleFunctionsLoader.loadExtensibleFunctionSubClasses();
     }
 
     public void resetAll() {
@@ -37,21 +50,21 @@ public class TaschenrechnerModel {
             case COS -> {
                 try {
                     ans = cos();
-                } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
+                } catch (InvocationTargetException | IllegalAccessException | NoSuchMethodException e) {
                     System.out.println(e.getMessage());
                 }
             }
             case SIN -> {
                 try {
                     ans = sin();
-                } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
+                } catch (InvocationTargetException | IllegalAccessException | NoSuchMethodException e) {
                     System.out.println(e.getMessage());
                 }
             }
             case TAN -> {
                 try {
                     ans = tan();
-                } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
+                } catch (InvocationTargetException | IllegalAccessException | NoSuchMethodException e) {
                     System.out.println(e.getMessage());
                 }
             }
@@ -69,22 +82,43 @@ public class TaschenrechnerModel {
         return ans / enteredNumber;
     }
 
-    private double sin() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+    private double sin() throws InvocationTargetException, IllegalAccessException, NoSuchMethodException {
+        Class sinFunctionClass = extensibleFunctionsLoader.getSpecificClass(SinFunction.SIN_FUNCTION);
+        // TODO eigentlich wollte ich hier keine Klasse instanzieren, aber ich kriege es anders nicht hin, denn für die invoke Methode, braucht man eine Instanz des jeweiligen Objektes - also hier SinFunction
         SinFunction sinFunction = new SinFunction();
-        Method calculateSinFunc = sinFunction.getClass().getDeclaredMethod("calculate", double.class);
-        return (double) calculateSinFunc.invoke(sinFunction, enteredNumber);
+        return (double) getMethod(SinFunction.SIN_FUNCTION, CALCULATE).invoke(sinFunction, enteredNumber);
     }
 
-    private double cos() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+    public String getSinCaption() throws InvocationTargetException, IllegalAccessException, NoSuchMethodException {
+        SinFunction sinFunction = new SinFunction();
+        return (String) getMethod(SinFunction.SIN_FUNCTION, GET_CAPTION).invoke(sinFunction);
+    }
+
+    private double cos() throws InvocationTargetException, IllegalAccessException, NoSuchMethodException {
+        Class cosFunctionClass = extensibleFunctionsLoader.getSpecificClass(CosFunction.COS_FUNCTION);
         CosFunction cosFunction = new CosFunction();
-        Method calculateCosFunc = cosFunction.getClass().getDeclaredMethod("calculate", double.class);
-        return (double) calculateCosFunc.invoke(cosFunction, enteredNumber);
+        return (double) getMethod(CosFunction.COS_FUNCTION, CALCULATE).invoke(cosFunction, enteredNumber);
     }
 
-    private double tan() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+    public String getCosCaption() throws InvocationTargetException, IllegalAccessException, NoSuchMethodException {
+        CosFunction cosFunction = new CosFunction();
+        return (String) getMethod(CosFunction.COS_FUNCTION, GET_CAPTION).invoke(cosFunction);
+    }
+
+    private double tan() throws InvocationTargetException, IllegalAccessException, NoSuchMethodException {
+        Class tanFunctionClass = extensibleFunctionsLoader.getSpecificClass(TanFunction.TAN_FUNCTION);
         TanFunction tanFunction = new TanFunction();
-        Method calculateTanFunc = tanFunction.getClass().getDeclaredMethod("calculate", double.class);
-        return (double) calculateTanFunc.invoke(tanFunction, enteredNumber);
+        return (double) getMethod(TanFunction.TAN_FUNCTION, CALCULATE).invoke(tanFunction, enteredNumber);
+    }
+
+    public String getTanCaption() throws InvocationTargetException, IllegalAccessException, NoSuchMethodException {
+        TanFunction tanFunction = new TanFunction();
+        return (String) getMethod(TanFunction.TAN_FUNCTION, GET_CAPTION).invoke(tanFunction);
+    }
+
+    private Method getMethod(String className, String methodName) throws NoSuchMethodException {
+        // get calculate method from given class
+        return extensibleFunctionsLoader.getSpecificMethodFromSpecificClass(className, methodName);
     }
 
     // Getter and Setter

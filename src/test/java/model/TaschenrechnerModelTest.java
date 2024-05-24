@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.lang.reflect.InvocationTargetException;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class TaschenrechnerModelTest {
@@ -101,5 +103,26 @@ class TaschenrechnerModelTest {
         model.setEnteredNumber(parameter);
         double actualResult = model.calculate(Operation.TAN);
         assertEquals(expectedResult, actualResult);
+    }
+
+    @Test
+    void getSinCaption() throws InvocationTargetException, IllegalAccessException, NoSuchMethodException {
+        String expectedCaption = "sin(x)";
+        String actualCaption = model.getSinCaption();
+        assertEquals(expectedCaption, actualCaption);
+    }
+
+    @Test
+    void getCosCaption() throws InvocationTargetException, IllegalAccessException, NoSuchMethodException {
+        String expectedCaption = "cos(x)";
+        String actualCaption = model.getCosCaption();
+        assertEquals(expectedCaption, actualCaption);
+    }
+
+    @Test
+    void getTanCaption() throws InvocationTargetException, IllegalAccessException, NoSuchMethodException {
+        String expectedCaption = "tan(x)";
+        String actualCaption = model.getTanCaption();
+        assertEquals(expectedCaption, actualCaption);
     }
 }

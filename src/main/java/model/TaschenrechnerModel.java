@@ -27,7 +27,6 @@ public class TaschenrechnerModel {
 
     private void loadExtensibleFunctions() {
         this.extensibleFunctionsLoader = new ExtensibleFunctionsLoader();
-        this.extensibleFunctions = extensibleFunctionsLoader.loadExtensibleFunctionSubClasses();
     }
 
     public void resetAll() {

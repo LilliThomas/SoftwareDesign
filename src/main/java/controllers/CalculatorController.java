@@ -1,5 +1,6 @@
 package controllers;
 
+import exceptions.DivisionException;
 import model.CalculatorModel;
 import model.Operation;
 import view.CalculatorView;
@@ -13,8 +14,10 @@ public class CalculatorController implements PropertyChangeListener {
     private final CalculatorView view;
     private final CalculatorModel model;
 
+    // States (vlt. Design pattern dazu???)
     private boolean hasEnteredNumber = false;
     private boolean isInEqualsMode = false;
+    private boolean hasDecimalPoint = false;
 
     public CalculatorController(CalculatorView view, CalculatorModel model) {
         this.view = view;
@@ -30,6 +33,10 @@ public class CalculatorController implements PropertyChangeListener {
         view.addDeleteButtonListener(l -> model.resetEnteredNumber());
 
         view.addNumberButtonListener(l -> {
+            if (isInEqualsMode) {
+                model.resetAll();
+                isInEqualsMode = false;
+            }
             hasEnteredNumber = true;
             String addedNumber = ((JButton) l.getSource()).getText();
             if (!view.getTextAreaResult().equals("0")) {
@@ -42,18 +49,14 @@ public class CalculatorController implements PropertyChangeListener {
             if (!hasEnteredNumber && !isInEqualsMode) {
                 return;
             }
-
             String clickedOperation = ((JButton) l.getSource()).getText();
 
             model.setEnteredNumber(Float.parseFloat(view.getTextAreaResult()));
             model.setAns(Float.parseFloat(view.getTextAreaResult()));
-
-            model.addToCalculationString(view.getTextAreaResult());
-            model.addToCalculationString(clickedOperation);
-
             model.setOperation(mapInputToOperation(clickedOperation));
             model.setCalculationString();
             hasEnteredNumber = false;
+            isInEqualsMode = false;
         });
 
         view.addEqualsButtonListener(l -> {
@@ -65,6 +68,7 @@ public class CalculatorController implements PropertyChangeListener {
             }
 
             model.setCalculationString();
+
             model.calculate();
 
             hasEnteredNumber = false;
@@ -72,6 +76,22 @@ public class CalculatorController implements PropertyChangeListener {
 
         view.addInverseButtonListener(l -> {
             model.setEnteredNumber(Float.parseFloat(view.getTextAreaResult()) * (-1));
+        });
+
+        view.addDirectOperationButtonListener(l -> {
+            isInEqualsMode = true;
+            String clickedOperation = ((JButton) l.getSource()).getText();
+
+            model.setAns(Float.parseFloat(view.getTextAreaResult()));
+            model.setOperation(mapInputToOperation(clickedOperation));
+            model.setCalculationString();
+            model.calculate();
+        });
+
+        // kritisch
+        view.addDecimalPointButtonListener(l -> {
+            hasDecimalPoint = true;
+
         });
     }
 

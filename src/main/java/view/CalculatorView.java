@@ -28,9 +28,6 @@ public class CalculatorView extends JFrame{
     private final JButton btnMoreFunctions = new JButton("weitere Funktionen");
     private final JButton btnQuadrat = new JButton("^2");
     private final JButton btnDel = new JButton("del");
-    private final JButton btnSin = new JButton("sin");
-    private final JButton btnCos = new JButton("cos");
-    private final JButton btnTan = new JButton("tan");
     private final JTextArea textAreaResult = new JTextArea();
     private final JTextArea textAreaCalculation = new JTextArea();
 
@@ -103,7 +100,10 @@ public class CalculatorView extends JFrame{
         btnMinus.addActionListener(listener);
         btnMultiply.addActionListener(listener);
         btnDiv.addActionListener(listener);
-        btnComma.addActionListener(listener);
+
+    }
+
+    public void addDirectOperationButtonListener(ActionListener listener) {
         btnSqrt.addActionListener(listener);
         btnQuadrat.addActionListener(listener);
     }
@@ -119,10 +119,16 @@ public class CalculatorView extends JFrame{
         btn8.addActionListener(listener);
         btn9.addActionListener(listener);
         btn0.addActionListener(listener);
+        btnComma.addActionListener(listener);
+
     }
 
     public void addEqualsButtonListener(ActionListener listener) {
         btnEqual.addActionListener(listener);
+    }
+
+    public void addDecimalPointButtonListener(ActionListener listener) {
+        btnComma.addActionListener(listener);
     }
 
     public void addInverseButtonListener(ActionListener listener) {
@@ -148,9 +154,5 @@ public class CalculatorView extends JFrame{
 
     public String getTextAreaResult() {
         return textAreaResult.getText();
-    }
-
-    public String getTextAreaCalculation() {
-        return textAreaCalculation.getText();
     }
 }

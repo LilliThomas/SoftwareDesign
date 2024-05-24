@@ -1,7 +1,6 @@
 package model;
 
 import java.util.Arrays;
-import java.util.Optional;
 
 public enum Operation {
     PLUS("+"),
@@ -9,11 +8,11 @@ public enum Operation {
     TIMES("*"),
     DIVIDE("/"),
     SQUARE("^2"),
-    ROOT("^(1/2)"),
+    ROOT("sqrt"),
 
     EXTRA("extra");
 
-    private String sign;
+    private final String sign;
 
     Operation(String sign) {
         this.sign = sign;

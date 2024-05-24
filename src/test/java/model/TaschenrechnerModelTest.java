@@ -1,6 +1,9 @@
 package model;
 
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -13,65 +16,90 @@ class TaschenrechnerModelTest {
         model = new TaschenrechnerModel();
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void resetAll() {
         model.resetAll();
         assertEquals(0, model.getAns());
         assertEquals(0, model.getEnteredNumber());
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void resetEnteredNumber() {
         model.resetEnteredNumber();
         assertEquals(0, model.getEnteredNumber());
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void calculatePlus() {
         model.setAns(2);
         model.setEnteredNumber(2);
         assertEquals(4, model.calculate(Operation.PLUS));
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void calculateMinus() {
         model.setAns(2);
         model.setEnteredNumber(2);
         assertEquals(0, model.calculate(Operation.MINUS));
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void calculateTimes() {
         model.setAns(2);
         model.setEnteredNumber(2);
         assertEquals(4, model.calculate(Operation.TIMES));
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void calculateDivide() {
         model.setAns(2);
         model.setEnteredNumber(2);
         assertEquals(1, model.calculate(Operation.DIVIDE));
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void calculateRoot() {
         model.setAns(4);
         model.setEnteredNumber(2);
         assertEquals(2, model.calculate(Operation.ROOT));
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void calculateSquare() {
         model.setAns(2);
         model.setEnteredNumber(2);
         assertEquals(4, model.calculate(Operation.SQUARE));
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void calculateReciprocal() {
         model.setAns(2);
         model.setEnteredNumber(2);
         assertEquals(0.5, model.calculate(Operation.RECIPROCAL));
+    }
+
+    @ParameterizedTest
+    @ValueSource(floats = {-3, -1, 0, 1,2.5f,3, Float.MAX_VALUE})
+    void testCalculateCosEnteredNumberSuccessful(float parameter) {
+        double expectedResult = Math.cos(parameter);
+        model.setEnteredNumber(parameter);
+        double actualResult = model.calculate(Operation.COS);
+        assertEquals(expectedResult, actualResult);
+    }
+    @ParameterizedTest
+    @ValueSource(floats = {-3, -1, 0, 1,2.5f,3, Float.MAX_VALUE})
+    void testCalculateSinEnteredNumberSuccessful(float parameter) {
+        double expectedResult = Math.sin(parameter);
+        model.setEnteredNumber(parameter);
+        double actualResult = model.calculate(Operation.SIN);
+        assertEquals(expectedResult, actualResult);
+    }
+    @ParameterizedTest
+    @ValueSource(floats = {-3, -1, 0, 1,2.5f,3, Float.MAX_VALUE})
+    void testCalculateTanEnteredNumberSuccessful(float parameter) {
+        double expectedResult = Math.tan(parameter);
+        model.setEnteredNumber(parameter);
+        double actualResult = model.calculate(Operation.TAN);
+        assertEquals(expectedResult, actualResult);
     }
 }

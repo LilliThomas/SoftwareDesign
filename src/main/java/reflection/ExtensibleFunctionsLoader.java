@@ -1,11 +1,11 @@
 package reflection;
 
+import extensible.functions.CalculatorFunction;
+import org.reflections.Reflections;
+
 import java.lang.reflect.Method;
 import java.util.NoSuchElementException;
 import java.util.Set;
-
-import extensible.functions.CalculatorFunction;
-import org.reflections.Reflections;
 
 public class ExtensibleFunctionsLoader {
     private static final String COULD_NOT_BE_FOUND = " could not be found.";
@@ -19,29 +19,38 @@ public class ExtensibleFunctionsLoader {
     public Class<? extends CalculatorFunction> getSpecificClass(String className) {
         Set<Class<? extends CalculatorFunction>> subClasses = loadCalculatorFunctionSubClasses();
         for (Class clazz : subClasses) {
-            if (clazz.getSimpleName().equals(className)) {
+            if (hasClassName(clazz, className)) {
                 return clazz;
             }
         }
         throw new NoSuchElementException("The class " + COULD_NOT_BE_FOUND);
     }
 
-    public Method[] getMethodsFromSpecificClass(String clazz) {
+    private static boolean hasClassName(Class clazz, String className) {   /* oder wie auch immer die Methode heißen soll*/
+        return className.equals(clazz.getSimpleName());
+    }
+
+    public Method[] getMethodsFromSpecificClass(String classname) {
         for (Class c : loadCalculatorFunctionSubClasses()) {
-            if (c.getSimpleName().equals(clazz)) {
+            if (hasClassName(c, classname)) {
+                //TODO achtung NPE Exception
                 return c.getDeclaredMethods();
             }
         }
-        throw new NoSuchElementException("The class " + clazz + COULD_NOT_BE_FOUND);
+        throw new NoSuchElementException("The class " + classname + COULD_NOT_BE_FOUND);
     }
 
-    public Method getSpecificMethodFromSpecificClass(String clazz, String method) throws NoSuchMethodException {
+    public Method getSpecificMethodFromSpecificClass(String clazz, String methodName) throws NoSuchMethodException {
         Method[] methods = getMethodsFromSpecificClass(clazz);
         for (Method m : methods) {
-            if (m.getName().equals(method)) {
+            if (hasMethodName(m, methodName)) {
                 return m;
             }
         }
-        throw new NoSuchMethodException("The method " + method + COULD_NOT_BE_FOUND);
+        throw new NoSuchMethodException("The method " + methodName + COULD_NOT_BE_FOUND);
+    }
+
+    private static boolean hasMethodName(Method method, String methodName) {
+        return method.getName().equals(methodName);
     }
 }

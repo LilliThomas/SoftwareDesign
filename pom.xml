@@ -60,6 +60,7 @@
                 <artifactId>maven-pmd-plugin</artifactId>
                 <version>3.22.0</version>
                 <configuration>
+                    <linkXRef>true</linkXRef>
                     <failOnViolation>true</failOnViolation> <!-- this is actually true by default, but can be disabled -->
                     <printFailingErrors>true</printFailingErrors>
                     <rulesets>ruleset.xml</rulesets>
@@ -68,6 +69,7 @@
                     <execution>
                         <goals>
                             <goal>check</goal>
+                            <goal>pmd</goal>
                         </goals>
                     </execution>
                 </executions>

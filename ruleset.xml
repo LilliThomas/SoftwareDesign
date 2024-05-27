@@ -6,11 +6,13 @@
          xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 http://pmd.sourceforge.net/ruleset_2_0_0.xsd">
 
     <description>
-        Ruleset for Software Design project
+        Custom ruleset for Software Design project
     </description>
 
     <!-- Your rules will come here -->
     <rule ref="category/java/bestpractices.xml/AbstractClassWithoutAbstractMethod" />
     <rule ref="category/java/codestyle.xml/UnnecessaryImport" />
     <rule ref="category/java/codestyle.xml/UnnecessaryModifier" />
+    <rule ref="category/java/codestyle.xml/UnnecessaryReturn" />
+    <rule ref="category/java/codestyle.xml/UnnecessarySemicolon" />
 </ruleset>

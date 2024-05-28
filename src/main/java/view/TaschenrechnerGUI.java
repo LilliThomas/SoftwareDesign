@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
-public class TaschenrecherGUI extends JFrame{
+public class TaschenrechnerGUI extends JFrame {
     JButton btn1 = new JButton("1");
     JButton btn2 = new JButton("2");
     JButton btn3 = new JButton("3");
@@ -34,16 +34,43 @@ public class TaschenrecherGUI extends JFrame{
     JTextArea textAreaResult = new JTextArea();
     JTextArea textAreaCalculation = new JTextArea();
 
-
-
-    public TaschenrecherGUI() {
-
+    public TaschenrechnerGUI() {
         setTitle("Taschenrechner");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setSize(500, 250);
-        JPanel panelText = new JPanel();
+        setSize(500, 280);
 
-        JPanel panelFunction = new JPanel();
+
+        btn1.setName("btn1");
+        btn2.setName("btn2");
+        btn3.setName("btn3");
+        btn4.setName("btn4");
+        btn5.setName("btn5");
+        btn6.setName("btn6");
+        btn7.setName("btn7");
+        btn8.setName("btn8");
+        btn9.setName("btn9");
+        btn0.setName("btn0");
+        btnPlus.setName("btnPlus");
+        btnMinus.setName("btnMinus");
+        btnMultiply.setName("btnMultiply");
+        btnDiv.setName("btnDiv");
+        btnEqual.setName("btnEqual");
+        btnComma.setName("btnComma");
+        btnSign.setName("btnSign");
+        btnSqrt.setName("btnSqrt");
+        btnHistory.setName("btnHistory");
+        btnClear.setName("btnClear");
+        btnMoreFunctions.setName("btnMoreFunctions");
+        btnQuadrat.setName("btnQuadrat");
+        btnDel.setName("btnDel");
+        btnSin.setName("btnSin");
+        btnCos.setName("btnCos");
+        btnTan.setName("btnTan");
+        textAreaResult.setName("textAreaResult");
+        textAreaCalculation.setName("textAreaCalculation");
+
+        JPanel panelText = new JPanel(new GridLayout(4, 1));
+        JPanel panelFunction = new JPanel(new GridLayout(1, 1));
 
         panelText.add(textAreaCalculation);
         panelText.add(textAreaResult);
@@ -52,19 +79,14 @@ public class TaschenrecherGUI extends JFrame{
         JPanel grid = new JPanel();
         grid.setLayout(new GridLayout(6, 4));
 
-
-
-
         panelFunction.add(btnMoreFunctions);
         panelFunction.add(btnHistory);
-        add(panelFunction, BorderLayout.CENTER);
-
+        add(panelFunction);
 
         grid.add(btnSin);
         grid.add(btnCos);
         grid.add(btnClear);
         grid.add(btnDel);
-
         grid.add(btnTan);
         grid.add(btnQuadrat);
         grid.add(btnSqrt);
@@ -87,16 +109,14 @@ public class TaschenrecherGUI extends JFrame{
         grid.add(btnEqual);
         add(grid, BorderLayout.SOUTH);
 
-
         setLocationRelativeTo(null);
-
         setVisible(true);
-
-
     }
+
     public void setTextResult(String text) {
         textAreaResult.setText(text);
     }
+
     public void setTextCalculation(String text) {
         textAreaCalculation.setText(text);
     }
@@ -130,9 +150,7 @@ public class TaschenrecherGUI extends JFrame{
         btnTan.addActionListener(listener);
     }
 
-
-    public void displayErrorMessage(String errorMessage){
-         JOptionPane.showMessageDialog(this, errorMessage);
+    public void displayErrorMessage(String errorMessage) {
+        JOptionPane.showMessageDialog(this, errorMessage);
     }
-
 }

@@ -90,6 +90,17 @@ public class TaschenrechnerGUITest {
         window.button("btnCos").requireVisible();
         window.button("btnTan").requireVisible();
     }
+    @Test
+    public void shouldSetResultText() throws Exception {
+        window.textBox("textAreaResult").setText("123");
+        assertThat(window.textBox("textAreaResult").text()).isEqualTo("123");
+    }
+
+    @Test
+    public void shouldSetCalculationText() throws Exception {
+        window.textBox("textAreaCalculation").setText("1+1");
+        assertThat(window.textBox("textAreaCalculation").text()).isEqualTo("1+1");
+    }
 
 
 }

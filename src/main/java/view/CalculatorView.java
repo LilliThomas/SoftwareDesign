@@ -23,14 +23,10 @@ public class CalculatorView extends JFrame {
     JButton btnComma = new JButton(".");
     JButton btnSign = new JButton("(-)");
     JButton btnSqrt = new JButton("sqrt");
-    JButton btnHistory = new JButton("history");
     JButton btnClear = new JButton("clear");
     JButton btnMoreFunctions = new JButton("weitere Funktionen");
     JButton btnQuadrat = new JButton("^2");
     JButton btnDel = new JButton("del");
-    JButton btnSin = new JButton("sin");
-    JButton btnCos = new JButton("cos");
-    JButton btnTan = new JButton("tan");
     JTextArea textAreaResult = new JTextArea();
     JTextArea textAreaCalculation = new JTextArea();
 
@@ -58,14 +54,10 @@ public class CalculatorView extends JFrame {
         btnComma.setName("btnComma");
         btnSign.setName("btnSign");
         btnSqrt.setName("btnSqrt");
-        btnHistory.setName("btnHistory");
         btnClear.setName("btnClear");
         btnMoreFunctions.setName("btnMoreFunctions");
         btnQuadrat.setName("btnQuadrat");
         btnDel.setName("btnDel");
-        btnSin.setName("btnSin");
-        btnCos.setName("btnCos");
-        btnTan.setName("btnTan");
         textAreaResult.setName("textAreaResult");
         textAreaCalculation.setName("textAreaCalculation");
 
@@ -77,17 +69,14 @@ public class CalculatorView extends JFrame {
         add(panelText, BorderLayout.NORTH);
 
         JPanel grid = new JPanel();
-        grid.setLayout(new GridLayout(6, 4));
+        grid.setLayout(new GridLayout(5, 4));
 
-        panelFunction.add(btnMoreFunctions);
-        panelFunction.add(btnHistory);
+        panelFunction.add(btnClear);
+        panelFunction.add(btnDel);
         add(panelFunction);
 
-        grid.add(btnSin);
-        grid.add(btnCos);
-        grid.add(btnClear);
-        grid.add(btnDel);
-        grid.add(btnTan);
+
+        grid.add(btnMoreFunctions);
         grid.add(btnQuadrat);
         grid.add(btnSqrt);
         grid.add(btnDiv);
@@ -140,14 +129,10 @@ public class CalculatorView extends JFrame {
         btnComma.addActionListener(listener);
         btnSign.addActionListener(listener);
         btnSqrt.addActionListener(listener);
-        btnHistory.addActionListener(listener);
         btnClear.addActionListener(listener);
         btnMoreFunctions.addActionListener(listener);
         btnQuadrat.addActionListener(listener);
         btnDel.addActionListener(listener);
-        btnSin.addActionListener(listener);
-        btnCos.addActionListener(listener);
-        btnTan.addActionListener(listener);
     }
 
     public void displayErrorMessage(String errorMessage) {

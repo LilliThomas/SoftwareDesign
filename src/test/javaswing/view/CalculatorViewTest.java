@@ -51,14 +51,10 @@ public class CalculatorViewTest {
         window.button("btnComma").click();
         window.button("btnSign").click();
         window.button("btnSqrt").click();
-        window.button("btnHistory").click();
         window.button("btnClear").click();
         window.button("btnMoreFunctions").click();
         window.button("btnQuadrat").click();
         window.button("btnDel").click();
-        window.button("btnSin").click();
-        window.button("btnCos").click();
-        window.button("btnTan").click();
 
     }
     @Test
@@ -81,14 +77,10 @@ public class CalculatorViewTest {
         window.button("btnComma").requireVisible();
         window.button("btnSign").requireVisible();
         window.button("btnSqrt").requireVisible();
-        window.button("btnHistory").requireVisible();
         window.button("btnClear").requireVisible();
         window.button("btnMoreFunctions").requireVisible();
         window.button("btnQuadrat").requireVisible();
         window.button("btnDel").requireVisible();
-        window.button("btnSin").requireVisible();
-        window.button("btnCos").requireVisible();
-        window.button("btnTan").requireVisible();
     }
     @Test
     void shouldSetResultText() throws Exception {

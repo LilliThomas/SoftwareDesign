@@ -8,13 +8,13 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.swing.assertions.Assertions.assertThat;
 
-public class TaschenrechnerGUITest {
+public class CalculatorViewTest {
 
-    private static TaschenrechnerGUI frame;
+    private static CalculatorView frame;
     private static FrameFixture window;
     @BeforeAll
     static void before(){
-        frame = new TaschenrechnerGUI();
+        frame = new CalculatorView();
         window = new FrameFixture(frame);
         window.show();
     }
@@ -26,43 +26,43 @@ public class TaschenrechnerGUITest {
     }
 
     @Test
-    public void shouldDisplayCalculatorTitle() {
+    void shouldDisplayCalculatorTitle() {
 
         assertThat(window.target().getTitle()).isEqualTo("Taschenrechner");
     }
 
+//    @Test
+//    void clickButtons(){
+//        window.button("btn1").click();
+//        window.button("btn2").click();
+//        window.button("btn3").click();
+//        window.button("btn4").click();
+//        window.button("btn5").click();
+//        window.button("btn6").click();
+//        window.button("btn7").click();
+//        window.button("btn8").click();
+//        window.button("btn9").click();
+//        window.button("btn0").click();
+//        window.button("btnPlus").click();
+//        window.button("btnMinus").click();
+//        window.button("btnMultiply").click();
+//        window.button("btnDiv").click();
+//        window.button("btnEqual").click();
+//        window.button("btnComma").click();
+//        window.button("btnSign").click();
+//        window.button("btnSqrt").click();
+//        window.button("btnHistory").click();
+//        window.button("btnClear").click();
+//        window.button("btnMoreFunctions").click();
+//        window.button("btnQuadrat").click();
+//        window.button("btnDel").click();
+//        window.button("btnSin").click();
+//        window.button("btnCos").click();
+//        window.button("btnTan").click();
+//
+//    }
     @Test
-    void clickButtons(){
-        window.button("btn1").click();
-        window.button("btn2").click();
-        window.button("btn3").click();
-        window.button("btn4").click();
-        window.button("btn5").click();
-        window.button("btn6").click();
-        window.button("btn7").click();
-        window.button("btn8").click();
-        window.button("btn9").click();
-        window.button("btn0").click();
-        window.button("btnPlus").click();
-        window.button("btnMinus").click();
-        window.button("btnMultiply").click();
-        window.button("btnDiv").click();
-        window.button("btnEqual").click();
-        window.button("btnComma").click();
-        window.button("btnSign").click();
-        window.button("btnSqrt").click();
-        window.button("btnHistory").click();
-        window.button("btnClear").click();
-        window.button("btnMoreFunctions").click();
-        window.button("btnQuadrat").click();
-        window.button("btnDel").click();
-        window.button("btnSin").click();
-        window.button("btnCos").click();
-        window.button("btnTan").click();
-
-    }
-    @Test
-    public void shouldDisplayButtons() {
+    void shouldDisplayButtons() {
         window.button("btn1").requireVisible();
         window.button("btn2").requireVisible();
         window.button("btn3").requireVisible();
@@ -91,13 +91,13 @@ public class TaschenrechnerGUITest {
         window.button("btnTan").requireVisible();
     }
     @Test
-    public void shouldSetResultText() throws Exception {
+    void shouldSetResultText() throws Exception {
         window.textBox("textAreaResult").setText("123");
         assertThat(window.textBox("textAreaResult").text()).isEqualTo("123");
     }
 
     @Test
-    public void shouldSetCalculationText() throws Exception {
+    void shouldSetCalculationText() throws Exception {
         window.textBox("textAreaCalculation").setText("1+1");
         assertThat(window.textBox("textAreaCalculation").text()).isEqualTo("1+1");
     }

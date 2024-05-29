@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
-public class TaschenrechnerGUI extends JFrame {
+public class CalculatorView extends JFrame {
     JButton btn1 = new JButton("1");
     JButton btn2 = new JButton("2");
     JButton btn3 = new JButton("3");
@@ -34,7 +34,7 @@ public class TaschenrechnerGUI extends JFrame {
     JTextArea textAreaResult = new JTextArea();
     JTextArea textAreaCalculation = new JTextArea();
 
-    public TaschenrechnerGUI() {
+    public CalculatorView() {
         setTitle("Taschenrechner");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(500, 280);

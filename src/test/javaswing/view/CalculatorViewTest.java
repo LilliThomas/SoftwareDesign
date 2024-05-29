@@ -31,36 +31,36 @@ public class CalculatorViewTest {
         assertThat(window.target().getTitle()).isEqualTo("Taschenrechner");
     }
 
-//    @Test
-//    void clickButtons(){
-//        window.button("btn1").click();
-//        window.button("btn2").click();
-//        window.button("btn3").click();
-//        window.button("btn4").click();
-//        window.button("btn5").click();
-//        window.button("btn6").click();
-//        window.button("btn7").click();
-//        window.button("btn8").click();
-//        window.button("btn9").click();
-//        window.button("btn0").click();
-//        window.button("btnPlus").click();
-//        window.button("btnMinus").click();
-//        window.button("btnMultiply").click();
-//        window.button("btnDiv").click();
-//        window.button("btnEqual").click();
-//        window.button("btnComma").click();
-//        window.button("btnSign").click();
-//        window.button("btnSqrt").click();
-//        window.button("btnHistory").click();
-//        window.button("btnClear").click();
-//        window.button("btnMoreFunctions").click();
-//        window.button("btnQuadrat").click();
-//        window.button("btnDel").click();
-//        window.button("btnSin").click();
-//        window.button("btnCos").click();
-//        window.button("btnTan").click();
-//
-//    }
+    @Test
+    void clickButtons(){
+        window.button("btn1").click();
+        window.button("btn2").click();
+        window.button("btn3").click();
+        window.button("btn4").click();
+        window.button("btn5").click();
+        window.button("btn6").click();
+        window.button("btn7").click();
+        window.button("btn8").click();
+        window.button("btn9").click();
+        window.button("btn0").click();
+        window.button("btnPlus").click();
+        window.button("btnMinus").click();
+        window.button("btnMultiply").click();
+        window.button("btnDiv").click();
+        window.button("btnEqual").click();
+        window.button("btnComma").click();
+        window.button("btnSign").click();
+        window.button("btnSqrt").click();
+        window.button("btnHistory").click();
+        window.button("btnClear").click();
+        window.button("btnMoreFunctions").click();
+        window.button("btnQuadrat").click();
+        window.button("btnDel").click();
+        window.button("btnSin").click();
+        window.button("btnCos").click();
+        window.button("btnTan").click();
+
+    }
     @Test
     void shouldDisplayButtons() {
         window.button("btn1").requireVisible();

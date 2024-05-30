@@ -1,25 +1,13 @@
 package model;
 
 import exceptions.DivisionException;
-import extensible.functions.CalculatorFunction;
-import extensible.functions.CosFunction;
-import extensible.functions.SinFunction;
-import extensible.functions.TanFunction;
-import reflection.ExtensibleFunctionsLoader;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.util.Set;
-
-public class TaschenrechnerModel {
+public class CalculatorModel {
 
     private double ans;
     private double enteredNumber;
-    private ExtensibleFunctionsLoader extensibleFunctionsLoader;
-    private static final String CALCULATE = "calculate";
-    private static final String GET_CAPTION = "getCaption";
 
-    public TaschenrechnerModel() {
+    public CalculatorModel() {
         this.ans = 0;
         this.enteredNumber = 0;
     }

@@ -8,13 +8,13 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class TaschenrechnerModelTest {
+class CalculatorModelTest {
 
-    private static TaschenrechnerModel model;
+    private static CalculatorModel model;
 
     @BeforeAll
     static void before() {
-        model = new TaschenrechnerModel();
+        model = new CalculatorModel();
     }
 
     @Test

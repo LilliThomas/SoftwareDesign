@@ -15,7 +15,6 @@ public class ExtensibleFunctionsLoader {
         return reflections.getSubTypesOf(CalculatorFunction.class);
     }
 
-    // TODO diese Methode in Controller implementieren und für jede Subklasse neuen Button erstellen
     public Object[][] getMethodsFromAllClasses(Set<Class<? extends CalculatorFunction>> classes) throws NoSuchMethodException {
         if (classes.isEmpty()) {
             throw new NoSuchMethodException("CalculatorFunction has no sub classes!");

@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
-public class TaschenrecherGUI extends JFrame{
+public class CalculatorView extends JFrame {
     JButton btn1 = new JButton("1");
     JButton btn2 = new JButton("2");
     JButton btn3 = new JButton("3");
@@ -23,26 +23,45 @@ public class TaschenrecherGUI extends JFrame{
     JButton btnComma = new JButton(".");
     JButton btnSign = new JButton("(-)");
     JButton btnSqrt = new JButton("sqrt");
-    JButton btnHistory = new JButton("history");
     JButton btnClear = new JButton("clear");
     JButton btnMoreFunctions = new JButton("weitere Funktionen");
     JButton btnQuadrat = new JButton("^2");
     JButton btnDel = new JButton("del");
-    JButton btnSin = new JButton("sin");
-    JButton btnCos = new JButton("cos");
-    JButton btnTan = new JButton("tan");
     JTextArea textAreaResult = new JTextArea();
     JTextArea textAreaCalculation = new JTextArea();
 
-
-
-    public TaschenrecherGUI() {
-
+    public CalculatorView() {
         setTitle("Taschenrechner");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(500, 280);
-        JPanel panelText = new JPanel(new GridLayout(4, 1));
 
+
+        btn1.setName("btn1");
+        btn2.setName("btn2");
+        btn3.setName("btn3");
+        btn4.setName("btn4");
+        btn5.setName("btn5");
+        btn6.setName("btn6");
+        btn7.setName("btn7");
+        btn8.setName("btn8");
+        btn9.setName("btn9");
+        btn0.setName("btn0");
+        btnPlus.setName("btnPlus");
+        btnMinus.setName("btnMinus");
+        btnMultiply.setName("btnMultiply");
+        btnDiv.setName("btnDiv");
+        btnEqual.setName("btnEqual");
+        btnComma.setName("btnComma");
+        btnSign.setName("btnSign");
+        btnSqrt.setName("btnSqrt");
+        btnClear.setName("btnClear");
+        btnMoreFunctions.setName("btnMoreFunctions");
+        btnQuadrat.setName("btnQuadrat");
+        btnDel.setName("btnDel");
+        textAreaResult.setName("textAreaResult");
+        textAreaCalculation.setName("textAreaCalculation");
+
+        JPanel panelText = new JPanel(new GridLayout(4, 1));
         JPanel panelFunction = new JPanel(new GridLayout(1, 1));
 
         panelText.add(textAreaCalculation);
@@ -50,22 +69,14 @@ public class TaschenrecherGUI extends JFrame{
         add(panelText, BorderLayout.NORTH);
 
         JPanel grid = new JPanel();
-        grid.setLayout(new GridLayout(6, 4));
+        grid.setLayout(new GridLayout(5, 4));
 
-
-
-
-        panelFunction.add(btnMoreFunctions);
-        panelFunction.add(btnHistory);
+        panelFunction.add(btnClear);
+        panelFunction.add(btnDel);
         add(panelFunction);
 
 
-        grid.add(btnSin);
-        grid.add(btnCos);
-        grid.add(btnClear);
-        grid.add(btnDel);
-
-        grid.add(btnTan);
+        grid.add(btnMoreFunctions);
         grid.add(btnQuadrat);
         grid.add(btnSqrt);
         grid.add(btnDiv);
@@ -87,16 +98,14 @@ public class TaschenrecherGUI extends JFrame{
         grid.add(btnEqual);
         add(grid, BorderLayout.SOUTH);
 
-
         setLocationRelativeTo(null);
-
         setVisible(true);
-
-
     }
+
     public void setTextResult(String text) {
         textAreaResult.setText(text);
     }
+
     public void setTextCalculation(String text) {
         textAreaCalculation.setText(text);
     }
@@ -120,19 +129,13 @@ public class TaschenrecherGUI extends JFrame{
         btnComma.addActionListener(listener);
         btnSign.addActionListener(listener);
         btnSqrt.addActionListener(listener);
-        btnHistory.addActionListener(listener);
         btnClear.addActionListener(listener);
         btnMoreFunctions.addActionListener(listener);
         btnQuadrat.addActionListener(listener);
         btnDel.addActionListener(listener);
-        btnSin.addActionListener(listener);
-        btnCos.addActionListener(listener);
-        btnTan.addActionListener(listener);
     }
 
-
-    public void displayErrorMessage(String errorMessage){
-         JOptionPane.showMessageDialog(this, errorMessage);
+    public void displayErrorMessage(String errorMessage) {
+        JOptionPane.showMessageDialog(this, errorMessage);
     }
-
 }

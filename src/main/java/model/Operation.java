@@ -8,8 +8,5 @@ public enum Operation {
     SQUARE,
     ROOT,
     RECIPROCAL,
-    SIN,
-    COS,
-    TAN,
     EXTRA
 }

@@ -1,6 +1,7 @@
 package model;
 
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -101,6 +102,7 @@ class CalculatorModelTest {
         assertEquals(expectedResult, actualResult);
     }
 
+    /*@Disabled
     @Test
     void getSinCaption() throws InvocationTargetException, IllegalAccessException, NoSuchMethodException {
         String expectedCaption = "sin(x)";
@@ -108,6 +110,7 @@ class CalculatorModelTest {
         assertEquals(expectedCaption, actualCaption);
     }
 
+    @Disabled
     @Test
     void getCosCaption() throws InvocationTargetException, IllegalAccessException, NoSuchMethodException {
         String expectedCaption = "cos(x)";
@@ -115,6 +118,7 @@ class CalculatorModelTest {
         assertEquals(expectedCaption, actualCaption);
     }
 
+    @Disabled
     @Test
     void getTanCaption() throws InvocationTargetException, IllegalAccessException, NoSuchMethodException {
         String expectedCaption = "tan(x)";

@@ -9,7 +9,6 @@ import org.reflections.Reflections;
 
 public class ExtensibleFunctionsLoader {
     private static final String COULD_NOT_BE_FOUND = " could not be found.";
-    CalculatorFunction calculatorFunction;
 
     public Set<Class<? extends CalculatorFunction>> loadExtensibleFunctionSubClasses() {
         Reflections reflections = new Reflections(CalculatorFunction.class);

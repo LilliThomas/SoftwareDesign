@@ -4,8 +4,6 @@ import extensible.functions.CalculatorFunction;
 import extensible.functions.CosFunction;
 import extensible.functions.SinFunction;
 import extensible.functions.TanFunction;
-import javassist.compiler.MemberResolver;
-import org.junit.Before;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -13,9 +11,7 @@ import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import java.io.StringReader;
 import java.lang.reflect.Method;
-import java.util.Calendar;
 import java.util.LinkedHashSet;
 import java.util.NoSuchElementException;
 import java.util.Set;

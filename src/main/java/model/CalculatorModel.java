@@ -2,12 +2,12 @@ package model;
 
 import exceptions.DivisionException;
 
-public class TaschenrechnerModel {
+public class CalculatorModel {
 
     private double ans;
     private double enteredNumber;
 
-    public TaschenrechnerModel() {
+    public CalculatorModel() {
         this.ans = 0;
         this.enteredNumber = 0;
     }

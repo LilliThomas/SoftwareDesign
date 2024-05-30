@@ -16,6 +16,26 @@ public class ExtensibleFunctionsLoader {
         return reflections.getSubTypesOf(CalculatorFunction.class);
     }
 
+    // TODO diese Methode in Controller implementieren und für jede Subklasse neuen Button erstellen
+    public Object[][] getMethodsFromAllClasses(Set<Class<? extends CalculatorFunction>> classes) throws NoSuchMethodException {
+        if (classes.isEmpty()) {
+            throw new NoSuchMethodException("CalculatorFunction has no sub classes!");
+        }
+
+        Object[][] classesAndMethodsArray = new Object[classes.size()][2];
+        int index = 0;
+
+        for (Class<?> classMethods : classes) {
+            classesAndMethodsArray[index++] = new Method[] {
+                    classMethods.getDeclaredMethod("getCaption"),
+                    classMethods.getDeclaredMethod("calculate")
+            };
+        }
+
+        return classesAndMethodsArray;
+    }
+
+    // TODO: ist eigentlich nicht mehr nötig, da die Methode getMethodsFromAllClasses() nur benötigt wird
     public Class<? extends CalculatorFunction> getSpecificClass(String className) {
         Set<Class<? extends CalculatorFunction>> subClasses = loadCalculatorFunctionSubClasses();
         for (Class clazz : subClasses) {
@@ -33,7 +53,6 @@ public class ExtensibleFunctionsLoader {
     public Method[] getMethodsFromSpecificClass(String classname) {
         for (Class c : loadCalculatorFunctionSubClasses()) {
             if (hasClassName(c, classname)) {
-                //TODO achtung NPE Exception
                 return c.getDeclaredMethods();
             }
         }

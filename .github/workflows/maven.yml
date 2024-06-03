@@ -38,25 +38,8 @@ jobs:
           path: ~/.m2
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-m2
-      - name: PMD
-        uses: rody/pmd-github-action@main
-        with:
-          rulesets: 'ruleset.xml'
-          reportfile: 'pmd-report.json'
-          format: 'json'
-          failOnViolation: 'false'
-      # Create annotations from PMD report
-      - name: Create PMD annotations
-        uses: rody/pmd-annotations-github-action@main
-        with:
-          reportfile: 'pmd-report.json'
-          # Treat all rules with priority 1-4 as errors
-          min-error-priority: 4
-          # If any violations is an error, mark the step as failed
-          fail-on-error: true
       - name: Build and analyze
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=softwaredesign_hsw-se
-

@@ -9,7 +9,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
-class CalculatorModelTest {
+class TaschenrechnerModelTest {
 
     private CalculatorModel model;
 
@@ -17,7 +17,6 @@ class CalculatorModelTest {
     void before() {
         model = new CalculatorModel();
     }
-
 
     @Test
     void resetAll() {
@@ -103,5 +102,5 @@ class CalculatorModelTest {
         model.setEnteredNumber(parameter);
         double actualResult = model.calculate(Operation.TAN);
         assertEquals(expectedResult, actualResult);
-    }*/
+    }
 }

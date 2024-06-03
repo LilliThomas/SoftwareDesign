@@ -2,18 +2,14 @@ package model;
 
 public class CalculationText {
 
-    private double ans;
-    private double enteredNumber;
-    private String operationSign;
-    private boolean isEqualState;
-    private boolean hasEnterdNumber;
+    private String n1;
+    private String n2;
+    private String operation;
 
-    public CalculationText(double ans, double enteredNumber, String operationSign, boolean isEqualState, boolean hasEnterdNumber) {
-        this.ans = ans;
-        this.enteredNumber = enteredNumber;
-        this.operationSign = operationSign;
-        this.isEqualState = isEqualState;
-        this.hasEnterdNumber = hasEnterdNumber;
+    public CalculationText(String n1, String n2, String operation) {
+        this.n1 = n1;
+        this.n2 = n2;
+        this.operation = operation;
     }
 
     public CalculationText() {}
@@ -22,35 +18,24 @@ public class CalculationText {
         return new CalculationTextBuilder();
     }
 
-    public String getCalculationText() {
-        StringBuilder stringBuilder =  new StringBuilder();
-        stringBuilder.append(ans).append(" ");
-        stringBuilder.append(operationSign).append(" ");
-
-        if (enteredNumber != 0) {
-            stringBuilder.append(enteredNumber).append(" =");
+    public String getCalculationText(boolean isDirect) {
+        if (isDirect) {
+            String[] operationParts = operation.split("x");
+            this.n1 = String.format("%s%s%s", operationParts[0], n1, operationParts[1]);
         }
 
-        return stringBuilder.toString();
-    }
-
-    public void setAns(double ans) {
-        this.ans = ans;
-    }
-
-    public void setEnteredNumber(double enteredNumber) {
-        this.enteredNumber = enteredNumber;
-    }
-
-    public void setOperationSign(String operationSign) {
-        this.operationSign = operationSign;
-    }
-
-    public void setEqualState(boolean equalState) {
-        isEqualState = equalState;
-    }
-
-    public void setHasEnterdNumber(boolean hasEnterdNumber) {
-        this.hasEnterdNumber = hasEnterdNumber;
+        if (operation == null) {
+            return String.format("%s =", this.n1);
+        } else if (n2 == null && !isDirect) {
+            return String.format("%s %s", this.n1, this.operation);
+        } else if (isDirect && n1 != null) {
+            return String.format("%s ", this.n1);
+        } else if (n2 != null) {
+            if (isDirect) {
+                return String.format("%s %s %s", this.n1, this.operation, this.n2);
+            }
+            return String.format("%s %s %s =", this.n1, this.operation, this.n2);
+        }
+        return this.n1;
     }
 }

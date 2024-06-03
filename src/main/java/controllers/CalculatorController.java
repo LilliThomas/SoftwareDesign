@@ -1,35 +1,19 @@
 package controllers;
 
-import exceptions.DivisionException;
-import model.CalculationText;
 import model.CalculatorModel;
-import model.Operation;
+import util.Constants;
 import view.CalculatorView;
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.lang.reflect.InvocationTargetException;
 
 public class CalculatorController implements PropertyChangeListener {
 
-    /**
-     * State pattern nutzen für views
-     * https://www.tutorialspoint.com/design_pattern/state_pattern.htm
-     *
-     * Builder pattern nutzen für calculationString (erweiterung vom stringbuilder)
-     *
-     * observer pattern ist drinne
-     *
-     *
-     */
-
     private final CalculatorView view;
     private final CalculatorModel model;
-
-    // States (vlt. Design pattern dazu???)
-    private boolean hasEnteredNumber = false;
-    private boolean isInEqualsMode = false;
-    private boolean hasDecimalPoint = false;
 
     public CalculatorController(CalculatorView view, CalculatorModel model) {
         this.view = view;
@@ -38,116 +22,89 @@ public class CalculatorController implements PropertyChangeListener {
         model.addPropertyChangeListener(this);
 
         addListeners();
+        addExtensibleFunctionNames();
     }
 
     private void addListeners() {
-        view.addClearButtonListener(l -> model.resetAll());
-        view.addDeleteButtonListener(l -> model.resetEnteredNumber());
+        view.addClearButtonListener(l -> model.resetEverything());
 
-        view.addNumberButtonListener(l -> {
-            if (isInEqualsMode) {
-                model.resetAll();
-                isInEqualsMode = false;
-            }
-            hasEnteredNumber = true;
-            String addedNumber = ((JButton) l.getSource()).getText();
-            if (!view.getTextAreaResult().equals("0")) {
-                addedNumber = view.getTextAreaResult() + ((JButton) l.getSource()).getText();
-            }
-            view.setTextResult(addedNumber);
-        });
+        view.addDeleteButtonListener(l -> model.deleteFromBigText());
 
-        view.addOperationButtonListener(l -> {
-            if (!hasEnteredNumber && !isInEqualsMode) {
-                return;
-            }
-            String clickedOperation = ((JButton) l.getSource()).getText();
-            double enteredNumber = Double.parseDouble(view.getTextAreaResult());
-            double ans = Double.parseDouble(view.getTextAreaResult());
-            Operation operation = mapInputToOperation(clickedOperation);
+        view.addDecimalPointButtonListener(l-> model.addDecimalPointToBigText());
 
-            model.setEnteredNumber(enteredNumber);
-            model.setAns(ans);
+        view.addDirectOperationButtonListener(l -> {
+            String operation = getClickedButtonText(l);
             model.setOperation(operation);
-            model.resetEnteredNumber();
-
-            CalculationText calculationText = new CalculationText().builder()
-                    .setAns(ans)
-                    .setEnteredNumber(enteredNumber)
-                    .setOperationSign(operation.getSign())
-                    .build();
-
-            model.setCalculationString(calculationText);
-            hasEnteredNumber = false;
-            isInEqualsMode = false;
+            model.setDirect(true);
+            try {
+                model.calculate(false);
+            } catch (InvocationTargetException | NoSuchMethodException | InstantiationException |
+                     IllegalAccessException e) {
+                view.displayErrorMessage("Ups");
+            }
         });
 
         view.addEqualsButtonListener(l -> {
-            isInEqualsMode = true;
+            try {
 
-            double enteredNumber = Double.parseDouble(view.getTextAreaResult());
-            double ans = Double.parseDouble(view.getTextAreaResult());
-
-            if (hasEnteredNumber) {
-                model.setEnteredNumber(enteredNumber);
-            } else {
-                model.setAns(ans);
+                model.calculate(true);
+            } catch (InvocationTargetException | InstantiationException | IllegalAccessException |
+                     NoSuchMethodException e) {
+                view.displayErrorMessage("Ups");
             }
-
-            CalculationText calculationText = new CalculationText().builder()
-                    .setAns(ans)
-                    .setEnteredNumber(enteredNumber)
-                    .build();
-
-            model.setCalculationString(calculationText);
-
-            model.calculate();
-
-            hasEnteredNumber = false;
         });
 
-        view.addInverseButtonListener(l -> {
-            model.setEnteredNumber(Double.parseDouble(view.getTextAreaResult()) * (-1));
-        });
-
-        view.addDirectOperationButtonListener(l -> {
-            isInEqualsMode = true;
-
-            String clickedOperation = ((JButton) l.getSource()).getText();
-            double ans = Double.parseDouble(view.getTextAreaResult());
-            Operation operation = mapInputToOperation(clickedOperation);
-
-            model.setAns(ans);
+        view.addMoreFunctionsDropDownListener(l -> {
+            String operation = (String) l.getItem();
             model.setOperation(operation);
-            model.resetEnteredNumber();
-
-            CalculationText calculationText = new CalculationText().builder()
-                    .setAns(ans)
-                    .setOperationSign(operation.getSign())
-                    .build();
-
-            model.setCalculationString(calculationText);
-
-            model.calculate();
+            model.setDirect(true);
+            try {
+                model.calculate(false);
+            } catch (InvocationTargetException | NoSuchMethodException | IllegalAccessException |
+                     InstantiationException e) {
+                view.displayErrorMessage("Ups");
+            }
         });
 
-        // kritisch
-        view.addDecimalPointButtonListener(l -> {
-            hasDecimalPoint = true;
-
+        view.addNumberButtonListener(l -> {
+            model.setDirect(false);
+            model.addToBigText(getClickedButtonText(l));
         });
+
+        view.addOperationButtonListener(l -> {
+            String operation = getClickedButtonText(l);
+
+            model.setOperation(operation);
+            model.setDirect(false);
+
+            try {
+                model.calculate(false);
+            } catch (InvocationTargetException | NoSuchMethodException | IllegalAccessException |
+                     InstantiationException e) {
+                view.displayErrorMessage("Ups");
+            }
+            model.updateSmallText(false);
+            model.setBigText("0");
+        });
+
     }
 
-    private Operation mapInputToOperation(String input) {
-        return Operation.getBySign(input);
+    private void addExtensibleFunctionNames() {
+        view.setBtnMoreFunctionsOptions(model.getExtensibleFunctionNames());
+    }
+
+    private String getClickedButtonText(ActionEvent event) {
+        return ((JButton) event.getSource()).getText();
     }
 
     @Override
-    public void propertyChange(PropertyChangeEvent evt) {
-        switch (evt.getPropertyName()) {
-            case "enteredNumber", "ans" -> view.setTextResult(String.valueOf(evt.getNewValue()));
-            case "calculationString" -> view.setTextCalculation(String.valueOf(evt.getNewValue()));
-            default -> throw new RuntimeException();
+    public void propertyChange(PropertyChangeEvent event) {
+        switch (event.getPropertyName()) {
+            case Constants.PCL_BIGTEXT -> view.setTextResult(String.valueOf(event.getNewValue()));
+            case Constants.PCL_SMALLTEXT -> view.setTextCalculation(String.valueOf(event.getNewValue()));
+            default -> view.displayErrorMessage("Ups");
         }
     }
+
+
 }

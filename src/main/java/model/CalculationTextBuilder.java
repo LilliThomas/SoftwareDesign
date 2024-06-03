@@ -2,44 +2,32 @@ package model;
 
 public class CalculationTextBuilder {
 
-    private double ans;
-    private double enteredNumber;
-    private String operationSign;
-    private boolean isEqualState;
-    private boolean hasEnterdNumber;
+    private String n1;
+    private String n2;
+    private String operation;
 
     public CalculationTextBuilder() {
-
+        // necessary for Builder pattern
     }
 
-    public CalculationTextBuilder setAns(double ans) {
-        this.ans = ans;
+    public CalculationTextBuilder setN1(String n1) {
+        this.n1 = n1;
         return this;
     }
 
-    public CalculationTextBuilder setEnteredNumber(double enteredNumber) {
-        this.enteredNumber = enteredNumber;
+    public CalculationTextBuilder setN2(String n2) {
+        this.n2 = n2;
         return this;
     }
 
-    public CalculationTextBuilder setOperationSign(String operationSign) {
-        this.operationSign = operationSign;
-        return this;
-    }
-
-    public CalculationTextBuilder setIsEqualState(boolean isEqualState) {
-        this.isEqualState = isEqualState;
-        return this;
-    }
-
-    public CalculationTextBuilder setHasEnteredNumber(boolean hasEnteredNumber) {
-        this.hasEnterdNumber = hasEnteredNumber;
+    public CalculationTextBuilder setOperation(String operation) {
+        this.operation = operation;
         return this;
     }
 
 
 
     public CalculationText build() {
-        return new CalculationText(ans, enteredNumber, operationSign, isEqualState, hasEnterdNumber);
+        return new CalculationText(n1, n2, operation);
     }
 }

@@ -2,10 +2,11 @@ package util;
 
 public class Constants {
 
-    private Constants() {}
+    private Constants() {
+        throw new IllegalStateException("Constants class");
+    }
 
-    public static final String PCL_ENTERED_NUMBER = "enteredNumber";
-    public static final String PCL_ANS = "ans";
-    public static final String PCL_CALCULATION_STRING = "calculationString";
+    public static final String PCL_BIGTEXT = "big_text";
+    public static final String PCL_SMALLTEXT = "small_text";
 
 }

@@ -1,130 +1,139 @@
 package model;
 
-import exceptions.DivisionException;
-import extensible.functions.CosFunction;
-import extensible.functions.SinFunction;
-import extensible.functions.TanFunction;
+import reflection.ExtensibleFunctionsLoader;
+import service.CalculatorService;
 import util.Constants;
-
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.lang.reflect.InvocationTargetException;
+import java.util.List;
 
 public class CalculatorModel {
 
-    private final PropertyChangeSupport pclSupport;
+    private final PropertyChangeSupport pcSupport;
 
-    private String calculationString;
-    private double ans;
-    private double enteredNumber;
+    private String bigText;
+    private String smallText;
 
-    private Operation operation;
+    private final List<String> extensibleFunctionNames;
+
+    private String operation;
+    private boolean isDirect;
+
+    private String answer;
+    private String prevAnswer;
+    private String lastEnteredNumber;
+
+
     public CalculatorModel() {
-        this.calculationString = "";
-        this.ans = 0;
-        this.enteredNumber = 0;
-        operation = null;
+        this.extensibleFunctionNames = new ExtensibleFunctionsLoader().getExtensibleFunctionNames();
 
-        this.pclSupport = new PropertyChangeSupport(this);
+        this.bigText = "";
+        this.smallText = "";
+        this.operation = "";
+        this.answer = "0";
+        this.prevAnswer = "0";
+        this.lastEnteredNumber = "0";
+        this.pcSupport = new PropertyChangeSupport(this);
+
     }
 
-    public void resetAll() {
-        pclSupport.firePropertyChange(Constants.PCL_ANS, this.ans, 0);
-        pclSupport.firePropertyChange(Constants.PCL_ENTERED_NUMBER, this.enteredNumber, 0);
-        pclSupport.firePropertyChange(Constants.PCL_CALCULATION_STRING, this.calculationString, "");
-        calculationString = "";
-        ans = 0;
-        enteredNumber = 0;
+    public void calculate(boolean isFullCalculation) throws InvocationTargetException, NoSuchMethodException, IllegalAccessException, InstantiationException {
+        double p1 = Double.parseDouble(prevAnswer);
+        double p2 = Double.parseDouble(lastEnteredNumber);
+        CalculatorService service = new CalculatorService(p1, p2);
+        this.answer = String.valueOf(service.calculate(operation, isDirect));
+        this.setBigText(this.answer);
+        this.updateSmallText(isFullCalculation);
+        this.prevAnswer = this.answer;
     }
 
-    public void resetEnteredNumber() {
-        pclSupport.firePropertyChange(Constants.PCL_ENTERED_NUMBER, this.enteredNumber, 0);
-        enteredNumber = 0;
+    public void resetEverything() {
+        this.setBigText("0");
+        this.setSmallText("");
+        this.operation = "";
+        this.answer = "0";
+        this.prevAnswer = "0";
+        this.lastEnteredNumber = "0";
     }
 
-    public double calculate() {
-        double oldAns = this.ans;
-        switch (operation) {
-            case PLUS -> ans += enteredNumber;
-            case MINUS -> ans -= enteredNumber;
-            case TIMES -> ans *= enteredNumber;
-            case DIVIDE -> ans = divide();
-            case ROOT -> ans = Math.pow(ans, 0.5);
-            case SQUARE -> ans = Math.pow(ans, 2);
+    public void setBigText(String bigText) {
+        pcSupport.firePropertyChange(Constants.PCL_BIGTEXT, this.bigText, bigText);
+        this.bigText = bigText;
+    }
+
+    public void addToBigText(String bigText) {
+        String newBigText = bigText;
+        if (!this.bigText.equals("0")) {
+            newBigText = this.bigText + bigText;
         }
-        pclSupport.firePropertyChange("ans", oldAns, ans);
-        return ans;
-    }
-
-    private double divide() {
-        if (enteredNumber == 0) {
-            throw new DivisionException("Versucht durch 0 zu teilen!");
+        pcSupport.firePropertyChange(Constants.PCL_BIGTEXT, this.bigText, newBigText);
+        this.bigText = newBigText;
+        if (!this.operation.isBlank()) {
+            this.lastEnteredNumber = this.bigText;
+        } else {
+            this.prevAnswer = this.bigText;
         }
-        return ans / enteredNumber;
     }
 
-    private double sin() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
-        SinFunction sinFunction = new SinFunction();
-        Method calculateSinFunc = sinFunction.getClass().getDeclaredMethod("calculate", double.class);
-        return (double) calculateSinFunc.invoke(sinFunction, enteredNumber);
+    public void addDecimalPointToBigText() {
+        if (!this.bigText.contains(",")) {
+            this.addToBigText(",");
+        }
     }
 
-    private double cos() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
-        CosFunction cosFunction = new CosFunction();
-        Method calculateCosFunc = cosFunction.getClass().getDeclaredMethod("calculate", double.class);
-        return (double) calculateCosFunc.invoke(cosFunction, enteredNumber);
+    public void deleteFromBigText() {
+        String newBigText = this.bigText.substring(0, bigText.length() - 1);
+        if (newBigText.isEmpty()) {
+            newBigText = "0";
+        }
+        pcSupport.firePropertyChange(Constants.PCL_BIGTEXT, this.bigText, newBigText);
+        this.bigText = newBigText;
     }
 
-    private double tan() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
-        TanFunction tanFunction = new TanFunction();
-        Method calculateTanFunc = tanFunction.getClass().getDeclaredMethod("calculate", double.class);
-        return (double) calculateTanFunc.invoke(tanFunction, enteredNumber);
+
+    public void setSmallText(String smallText) {
+        pcSupport.firePropertyChange(Constants.PCL_SMALLTEXT, this.smallText, smallText);
+        this.smallText = smallText;
     }
 
-    // Getter and Setter
-    public double getAns() {
-        return ans;
+    public void updateSmallText(boolean fullCalculation) {
+        CalculationText calculationText;
+        if (!fullCalculation) {
+            if (!this.operation.isBlank()) {
+                calculationText = new CalculationText().builder()
+                        .setN1(this.prevAnswer)
+                        .setOperation(this.operation)
+                        .build();
+            } else {
+                calculationText = new CalculationText().builder()
+                        .setN1(this.lastEnteredNumber)
+                        .build();
+            }
+        } else {
+            calculationText = new CalculationText().builder()
+                    .setN1(this.prevAnswer)
+                    .setN2(this.lastEnteredNumber)
+                    .setOperation(this.operation)
+                    .build();
+        }
+        this.setSmallText(calculationText.getCalculationText(isDirect));
     }
 
-    public void setAns(double ans) {
-        pclSupport.firePropertyChange(Constants.PCL_ANS, this.ans, ans);
-        this.ans = ans;
-    }
-    public double getEnteredNumber() {
-        return enteredNumber;
-    }
-
-    public void setEnteredNumber(double enteredNumber) {
-        pclSupport.firePropertyChange(Constants.PCL_ENTERED_NUMBER, this.enteredNumber, enteredNumber);
-        this.enteredNumber = enteredNumber;
-    }
-    public Operation getOperation() {
-        return operation;
-    }
-
-    public void setOperation(Operation operation) {
-        pclSupport.firePropertyChange(Constants.PCL_ANS, this.operation, operation.getSign());
+    public void setOperation(String operation) {
         this.operation = operation;
     }
 
-    public void setCalculationString(CalculationText calculationText) {
+    public void setDirect(boolean direct) {
+        this.isDirect = direct;
+    }
 
-/*
-        String string = ans + " " + operation.getSign();
-        if (enteredNumber != 0) {
-            string = string + " " + enteredNumber + " =";
-        }*/
-        pclSupport.firePropertyChange(Constants.PCL_CALCULATION_STRING, this.calculationString, calculationText.getCalculationText());
-        this.calculationString = calculationText.getCalculationText();
+    public String[] getExtensibleFunctionNames() {
+        return this.extensibleFunctionNames.toArray(new String[0]);
     }
 
     public void addPropertyChangeListener(PropertyChangeListener pcl) {
-        pclSupport.addPropertyChangeListener(pcl);
-    }
-
-    public void removePropertyChangeListener(PropertyChangeListener pcl) {
-        pclSupport.removePropertyChangeListener(pcl);
+        pcSupport.addPropertyChangeListener(pcl);
     }
 }

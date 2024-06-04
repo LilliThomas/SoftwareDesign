@@ -3,6 +3,7 @@ package view;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemListener;
 
 public class CalculatorView extends JFrame {
     JButton btn1 = new JButton("1");
@@ -21,16 +22,19 @@ public class CalculatorView extends JFrame {
     JButton btnDiv = new JButton("/");
     JButton btnEqual = new JButton("=");
     JButton btnComma = new JButton(".");
-    JButton btnSign = new JButton("(-)");
-    JButton btnSqrt = new JButton("sqrt");
+    JButton btnSign = new JButton("(-x)");
+    JButton btnSqrt = new JButton("sqrt(x)");
     JButton btnClear = new JButton("clear");
-    JButton btnMoreFunctions = new JButton("weitere Funktionen");
-    JButton btnQuadrat = new JButton("^2");
+    JComboBox<String> comboBoxMoreFunctions = new JComboBox<>();
+    JButton btnQuadrat = new JButton("(x)^2");
     JButton btnDel = new JButton("del");
     JTextArea textAreaResult = new JTextArea();
     JTextArea textAreaCalculation = new JTextArea();
 
+
+
     public CalculatorView() {
+
         setTitle("Taschenrechner");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(500, 280);
@@ -55,13 +59,14 @@ public class CalculatorView extends JFrame {
         btnSign.setName("btnSign");
         btnSqrt.setName("btnSqrt");
         btnClear.setName("btnClear");
-        btnMoreFunctions.setName("btnMoreFunctions");
+        comboBoxMoreFunctions.setName("btnMoreFunctions");
         btnQuadrat.setName("btnQuadrat");
         btnDel.setName("btnDel");
         textAreaResult.setName("textAreaResult");
         textAreaCalculation.setName("textAreaCalculation");
 
         JPanel panelText = new JPanel(new GridLayout(4, 1));
+
         JPanel panelFunction = new JPanel(new GridLayout(1, 1));
 
         panelText.add(textAreaCalculation);
@@ -76,7 +81,7 @@ public class CalculatorView extends JFrame {
         add(panelFunction);
 
 
-        grid.add(btnMoreFunctions);
+        grid.add(comboBoxMoreFunctions);
         grid.add(btnQuadrat);
         grid.add(btnSqrt);
         grid.add(btnDiv);
@@ -98,10 +103,13 @@ public class CalculatorView extends JFrame {
         grid.add(btnEqual);
         add(grid, BorderLayout.SOUTH);
 
-        setLocationRelativeTo(null);
-        setVisible(true);
-    }
 
+        setLocationRelativeTo(null);
+
+        setVisible(true);
+
+
+    }
     public void setTextResult(String text) {
         textAreaResult.setText(text);
     }
@@ -110,7 +118,21 @@ public class CalculatorView extends JFrame {
         textAreaCalculation.setText(text);
     }
 
-    public void addButtonListener(ActionListener listener) {
+    public void addOperationButtonListener(ActionListener listener) {
+        btnPlus.addActionListener(listener);
+        btnMinus.addActionListener(listener);
+        btnMultiply.addActionListener(listener);
+        btnDiv.addActionListener(listener);
+
+    }
+
+    public void addDirectOperationButtonListener(ActionListener listener) {
+        btnSqrt.addActionListener(listener);
+        btnQuadrat.addActionListener(listener);
+        btnSign.addActionListener(listener);
+    }
+
+    public void addNumberButtonListener(ActionListener listener) {
         btn1.addActionListener(listener);
         btn2.addActionListener(listener);
         btn3.addActionListener(listener);
@@ -121,19 +143,32 @@ public class CalculatorView extends JFrame {
         btn8.addActionListener(listener);
         btn9.addActionListener(listener);
         btn0.addActionListener(listener);
-        btnPlus.addActionListener(listener);
-        btnMinus.addActionListener(listener);
-        btnMultiply.addActionListener(listener);
-        btnDiv.addActionListener(listener);
+    }
+
+    public void addEqualsButtonListener(ActionListener listener) {
         btnEqual.addActionListener(listener);
+    }
+
+    public void addDecimalPointButtonListener(ActionListener listener) {
         btnComma.addActionListener(listener);
-        btnSign.addActionListener(listener);
-        btnSqrt.addActionListener(listener);
-        btnClear.addActionListener(listener);
-        btnMoreFunctions.addActionListener(listener);
-        btnQuadrat.addActionListener(listener);
+    }
+
+    public void addDeleteButtonListener(ActionListener listener) {
         btnDel.addActionListener(listener);
     }
+
+    public void addClearButtonListener(ActionListener listener) {
+        btnClear.addActionListener(listener);
+    }
+
+    public void addMoreFunctionsDropDownListener(ItemListener listener) {
+        comboBoxMoreFunctions.addItemListener(listener);
+    }
+
+    public void setBtnMoreFunctionsOptions(String[] options) {
+        comboBoxMoreFunctions.setModel(new DefaultComboBoxModel<>(options));
+    }
+
 
     public void displayErrorMessage(String errorMessage) {
         JOptionPane.showMessageDialog(this, errorMessage);

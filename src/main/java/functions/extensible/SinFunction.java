@@ -1,7 +1,11 @@
-package extensible.functions;
+package functions.extensible;
 
 public class SinFunction implements CalculatorFunction {
-    public static final String SIN_FUNCTION = "SinFunction";
+    @Override
+    public double calculate(double p1, double p2) {
+        return this.calculate(p1);
+    }
+
     @Override
     public double calculate(double parameter) {
         return Math.sin(parameter);

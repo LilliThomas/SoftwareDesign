@@ -103,7 +103,6 @@ public class CalculatorViewTest {
 //        window.button(JButtonMatcher.withText("=")).click();
 //        window.textBox("textAreaResult").requireText("8.0");
 //    }
-
 //    @Test
 //    @GUITest
 //    public void shouldPerformDivisionWhenDivideButtonIsClicked() throws Exception {

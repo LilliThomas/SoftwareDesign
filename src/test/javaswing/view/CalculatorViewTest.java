@@ -1,62 +1,41 @@
 package view;
 
+import controllers.CalculatorController;
+import model.CalculatorModel;
+import org.assertj.swing.annotation.GUITest;
+import org.assertj.swing.core.matcher.JButtonMatcher;
+import org.assertj.swing.edt.GuiActionRunner;
 import org.assertj.swing.fixture.FrameFixture;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
-
+import org.junit.jupiter.api.*;
 
 import static org.assertj.swing.assertions.Assertions.assertThat;
 
 public class CalculatorViewTest {
 
-    private static CalculatorView frame;
     private static FrameFixture window;
-    @BeforeAll
-    static void before(){
-        frame = new CalculatorView();
-        window = new FrameFixture(frame);
+    private static CalculatorModel model;
+    private static CalculatorController controller;
+
+    @BeforeEach
+    void before() {
+
+        CalculatorView view = GuiActionRunner.execute(CalculatorView::new);
+        model = new CalculatorModel();
+        controller = new CalculatorController(view, model);
+        window = new FrameFixture(view);
         window.show();
     }
 
-
-    @AfterAll
-    public static void tearDown() {
+    @AfterEach
+    public void tearDown() {
         window.cleanUp();
     }
 
     @Test
     void shouldDisplayCalculatorTitle() {
-
         assertThat(window.target().getTitle()).isEqualTo("Taschenrechner");
     }
 
-    @Test
-    void clickButtons(){
-        window.button("btn1").click();
-        window.button("btn2").click();
-        window.button("btn3").click();
-        window.button("btn4").click();
-        window.button("btn5").click();
-        window.button("btn6").click();
-        window.button("btn7").click();
-        window.button("btn8").click();
-        window.button("btn9").click();
-        window.button("btn0").click();
-        window.button("btnPlus").click();
-        window.button("btnMinus").click();
-        window.button("btnMultiply").click();
-        window.button("btnDiv").click();
-        window.button("btnEqual").click();
-        window.button("btnComma").click();
-        window.button("btnSign").click();
-        window.button("btnSqrt").click();
-        window.button("btnClear").click();
-        window.button("btnMoreFunctions").click();
-        window.button("btnQuadrat").click();
-        window.button("btnDel").click();
-
-    }
     @Test
     void shouldDisplayButtons() {
         window.button("btn1").requireVisible();
@@ -78,21 +57,79 @@ public class CalculatorViewTest {
         window.button("btnSign").requireVisible();
         window.button("btnSqrt").requireVisible();
         window.button("btnClear").requireVisible();
-        window.button("btnMoreFunctions").requireVisible();
+        window.comboBox("btnMoreFunctions").requireVisible();
         window.button("btnQuadrat").requireVisible();
         window.button("btnDel").requireVisible();
     }
+
+//    @Test
+//    @GUITest
+//    void shouldDisplayNumberWhenButtonIsClicked() {
+//        window.button("btn1").click();
+//        window.textBox("textAreaCalculation").requireText("1");
+//        //assertThat(window.textBox("textAreaCalculation").text()).isEqualTo("1");
+//        window.button("btn2").click();
+//        window.textBox("textAreaCalculation").requireText("12");
+//        //assertThat(window.textBox("textAreaCalculation").text()).isEqualTo("12");
+//    }
+
     @Test
-    void shouldSetResultText() throws Exception {
-        window.textBox("textAreaResult").setText("123");
-        assertThat(window.textBox("textAreaResult").text()).isEqualTo("123");
+    @GUITest
+    public void shouldPerformAdditionWhenPlusButtonIsClicked() throws Exception {
+        window.button(JButtonMatcher.withText("1")).click();
+        window.button(JButtonMatcher.withText("+")).click();
+        window.button(JButtonMatcher.withText("2")).click();
+        window.button(JButtonMatcher.withText("=")).click();
+        window.textBox("textAreaResult").requireText("3.0");
+        assertThat(window.textBox("textAreaResult").text()).isEqualTo("3.0");
     }
 
     @Test
-    void shouldSetCalculationText() throws Exception {
-        window.textBox("textAreaCalculation").setText("1+1");
-        assertThat(window.textBox("textAreaCalculation").text()).isEqualTo("1+1");
+    @GUITest
+    public void shouldPerformSubtractionWhenMinusButtonIsClicked() throws Exception {
+        window.button(JButtonMatcher.withText("5")).click();
+        window.button(JButtonMatcher.withText("-")).click();
+        window.button(JButtonMatcher.withText("3")).click();
+        window.button(JButtonMatcher.withText("=")).click();
+        window.textBox("textAreaResult").requireText("2.0");
     }
 
+//    @Test
+//    @GUITest
+//    public void shouldPerformMultiplicationWhenMultiplyButtonIsClicked() throws Exception {
+//        window.button(JButtonMatcher.withText("4")).click();
+//        window.button(JButtonMatcher.withText("*")).click();
+//        window.button(JButtonMatcher.withText("2")).click();
+//        window.button(JButtonMatcher.withText("=")).click();
+//        window.textBox("textAreaResult").requireText("8.0");
+//    }
+
+//    @Test
+//    @GUITest
+//    public void shouldPerformDivisionWhenDivideButtonIsClicked() throws Exception {
+//        window.button(JButtonMatcher.withText("8")).click();
+//        window.button("btnDiv").click();
+//        window.button(JButtonMatcher.withText("2")).click();
+//        window.button(JButtonMatcher.withText("=")).click();
+//        window.textBox("textAreaResult").requireText("4.0");
+//    }
+//
+//    @Test
+//    @GUITest
+//    public void shouldClearTextAreasWhenClearButtonIsClicked() {
+//        window.textBox("textAreaCalculation").setText("123");
+//        window.textBox("textAreaResult").setText("456");
+//        window.button(JButtonMatcher.withText("btnClear")).click();
+//        window.textBox("textAreaCalculation").requireText("");
+//        window.textBox("textAreaResult").requireText("");
+//    }
+//
+//    @Test
+//    @GUITest
+//    public void shouldDeleteLastCharacterWhenDelButtonIsClicked() {
+//        window.textBox("textAreaCalculation").setText("123");
+//        window.button(JButtonMatcher.withText("btnDel")).click();
+//        window.textBox("textAreaCalculation").requireText("12");
+//    }
 
 }

@@ -94,25 +94,25 @@ public class CalculatorViewTest {
         window.textBox("textAreaResult").requireText("2.0");
     }
 
-//    @Test
-//    @GUITest
-//    public void shouldPerformMultiplicationWhenMultiplyButtonIsClicked() throws Exception {
-//        window.button(JButtonMatcher.withText("4")).click();
-//        window.button(JButtonMatcher.withText("*")).click();
-//        window.button(JButtonMatcher.withText("2")).click();
-//        window.button(JButtonMatcher.withText("=")).click();
-//        window.textBox("textAreaResult").requireText("8.0");
-//    }
-//    @Test
-//    @GUITest
-//    public void shouldPerformDivisionWhenDivideButtonIsClicked() throws Exception {
-//        window.button(JButtonMatcher.withText("8")).click();
-//        window.button("btnDiv").click();
-//        window.button(JButtonMatcher.withText("2")).click();
-//        window.button(JButtonMatcher.withText("=")).click();
-//        window.textBox("textAreaResult").requireText("4.0");
-//    }
-//
+    @Test
+    @GUITest
+    public void shouldPerformMultiplicationWhenMultiplyButtonIsClicked() throws Exception {
+        window.button(JButtonMatcher.withText("4")).click();
+        window.button(JButtonMatcher.withText("*")).click();
+        window.button(JButtonMatcher.withText("2")).click();
+        window.button(JButtonMatcher.withText("=")).click();
+        window.textBox("textAreaResult").requireText("8.0");
+    }
+    @Test
+    @GUITest
+    public void shouldPerformDivisionWhenDivideButtonIsClicked() throws Exception {
+        window.button(JButtonMatcher.withText("8")).click();
+        window.button("btnDiv").click();
+        window.button(JButtonMatcher.withText("2")).click();
+        window.button(JButtonMatcher.withText("=")).click();
+        window.textBox("textAreaResult").requireText("4.0");
+    }
+
 //    @Test
 //    @GUITest
 //    public void shouldClearTextAreasWhenClearButtonIsClicked() {

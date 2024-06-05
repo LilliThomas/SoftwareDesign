@@ -34,12 +34,15 @@ public class CalculatorModel {
         this.operation = "";
         this.answer = "0";
         this.prevAnswer = "0";
-        this.lastEnteredNumber = "0";
+        this.lastEnteredNumber = "";
         this.pcSupport = new PropertyChangeSupport(this);
 
     }
 
     public void calculate(boolean isFullCalculation) throws InvocationTargetException, NoSuchMethodException, IllegalAccessException, InstantiationException {
+        if (lastEnteredNumber.isBlank()) {
+            return;
+        }
         double p1 = Double.parseDouble(prevAnswer);
         double p2 = Double.parseDouble(lastEnteredNumber);
         CalculatorService service = new CalculatorService(p1, p2);
@@ -55,7 +58,7 @@ public class CalculatorModel {
         this.operation = "";
         this.answer = "0";
         this.prevAnswer = "0";
-        this.lastEnteredNumber = "0";
+        this.lastEnteredNumber = "";
     }
 
     public void setBigText(String bigText) {

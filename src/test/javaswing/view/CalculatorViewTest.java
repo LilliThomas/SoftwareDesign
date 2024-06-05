@@ -62,16 +62,14 @@ public class CalculatorViewTest {
         window.button("btnDel").requireVisible();
     }
 
-//    @Test
-//    @GUITest
-//    void shouldDisplayNumberWhenButtonIsClicked() {
-//        window.button("btn1").click();
-//        window.textBox("textAreaCalculation").requireText("1");
-//        //assertThat(window.textBox("textAreaCalculation").text()).isEqualTo("1");
-//        window.button("btn2").click();
-//        window.textBox("textAreaCalculation").requireText("12");
-//        //assertThat(window.textBox("textAreaCalculation").text()).isEqualTo("12");
-//    }
+    @Test
+    @GUITest
+    void shouldDisplayNumberWhenButtonIsClicked() {
+        window.button("btn1").click();
+        window.textBox("textAreaResult").requireText("1");
+        window.button("btn2").click();
+        window.textBox("textAreaResult").requireText("12");
+    }
 
     @Test
     @GUITest
@@ -118,17 +116,17 @@ public class CalculatorViewTest {
 //    public void shouldClearTextAreasWhenClearButtonIsClicked() {
 //        window.textBox("textAreaCalculation").setText("123");
 //        window.textBox("textAreaResult").setText("456");
-//        window.button(JButtonMatcher.withText("btnClear")).click();
+//        window.button("btnClear").click();
 //        window.textBox("textAreaCalculation").requireText("");
-//        window.textBox("textAreaResult").requireText("");
+//        window.textBox("textAreaResult").requireText("0");
 //    }
 //
 //    @Test
 //    @GUITest
 //    public void shouldDeleteLastCharacterWhenDelButtonIsClicked() {
-//        window.textBox("textAreaCalculation").setText("123");
-//        window.button(JButtonMatcher.withText("btnDel")).click();
-//        window.textBox("textAreaCalculation").requireText("12");
+//        window.textBox("textAreaResult").setText("123");
+//        window.button("btnDel").click();
+//        window.textBox("textAreaResult").requireText("12");
 //    }
 
 }

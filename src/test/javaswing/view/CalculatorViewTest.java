@@ -111,22 +111,24 @@ public class CalculatorViewTest {
         window.textBox("textAreaResult").requireText("4.0");
     }
 
-//    @Test
-//    @GUITest
-//    public void shouldClearTextAreasWhenClearButtonIsClicked() {
-//        window.textBox("textAreaCalculation").setText("123");
-//        window.textBox("textAreaResult").setText("456");
-//        window.button("btnClear").click();
-//        window.textBox("textAreaCalculation").requireText("");
-//        window.textBox("textAreaResult").requireText("0");
-//    }
-//
-//    @Test
-//    @GUITest
-//    public void shouldDeleteLastCharacterWhenDelButtonIsClicked() {
-//        window.textBox("textAreaResult").setText("123");
-//        window.button("btnDel").click();
-//        window.textBox("textAreaResult").requireText("12");
-//    }
+    @Test
+    @GUITest
+    void shouldDeleteLastCharacterWhenDelButtonIsClicked() {
+        window.button("btn1").click();
+        window.button("btn2").click();
+        window.button("btnDel").click();
+        window.textBox("textAreaResult").requireText("1");
+    }
+
+    @Test
+    @GUITest
+    void shouldClearTextAreasWhenClearButtonIsClicked() {
+        window.button(JButtonMatcher.withText("4")).click();
+        window.button(JButtonMatcher.withText("*")).click();
+        window.button(JButtonMatcher.withText("2")).click();
+        window.button("btnClear").click();
+        window.textBox("textAreaCalculation").requireText("");
+        window.textBox("textAreaResult").requireText("0");
+    }
 
 }

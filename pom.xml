@@ -116,6 +116,9 @@
                         <configuration>
                             <excludes>
                                 <exclude>**/view/**</exclude>
+                                <exclude>**/main/**</exclude>
+                                <exclude>**/util/**</exclude>
+                                <exclude>**/exceptions/**</exclude>
                             </excludes>
                         </configuration>
                     </execution>
@@ -125,6 +128,12 @@
                             <goal>check</goal>
                         </goals>
                         <configuration>
+                            <excludes>
+                                <exclude>**/view/**</exclude>
+                                <exclude>**/main/**</exclude>
+                                <exclude>**/util/**</exclude>
+                                <exclude>**/exceptions/**</exclude>
+                            </excludes>
                             <rules>
                                 <rule>
                                     <element>PACKAGE</element>
@@ -132,7 +141,7 @@
                                         <limit>
                                             <counter>LINE</counter>
                                             <value>COVEREDRATIO</value>
-                                            <minimum>0.00</minimum>
+                                            <minimum>0.50</minimum>
                                         </limit>
                                     </limits>
                                 </rule>

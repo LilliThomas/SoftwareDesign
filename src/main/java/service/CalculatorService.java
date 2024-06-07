@@ -29,12 +29,13 @@ public class CalculatorService {
      * @param operationSign                 sign of the operation, e.g. "+" or "sin(x)"
      * @param isDirect                      if the operator only needs one number to calculate, e.g. sin(x)
      * @return                              the result of the calculation
+     * @throws DivisionException            thrown if wanted to divide by 0
      * @throws NoSuchMethodException        possible if error in reflections
      * @throws InvocationTargetException    possible if error in reflections
      * @throws IllegalAccessException       possible if error in reflections
      * @throws InstantiationException       possible if error in reflections
      */
-    public double calculate(String operationSign, boolean isDirect) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException, InstantiationException {
+    public double calculate(String operationSign, boolean isDirect) throws DivisionException, NoSuchMethodException, InvocationTargetException, IllegalAccessException, InstantiationException {
         if (operationSign.equals("/") && n2 == 0) {
             throw new DivisionException("Nicht durch 0 teilen!");
         }

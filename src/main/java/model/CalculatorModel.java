@@ -1,5 +1,6 @@
 package model;
 
+import exceptions.DivisionException;
 import reflection.ExtensibleFunctionsLoader;
 import service.CalculatorService;
 import util.Constants;
@@ -59,7 +60,11 @@ public class CalculatorModel {
         double p1 = Double.parseDouble(prevAnswer);
         double p2 = Double.parseDouble(lastEnteredNumber);
         CalculatorService service = new CalculatorService(p1, p2);
-        this.answer = String.valueOf(service.calculate(operation, isDirect));
+        try {
+            this.answer = String.valueOf(service.calculate(operation, isDirect));
+        } catch (DivisionException e) {
+            this.answer = e.getMessage();
+        }
         this.setBigText(this.answer);
         this.updateSmallText(isFullCalculation);
         this.prevAnswer = this.answer;

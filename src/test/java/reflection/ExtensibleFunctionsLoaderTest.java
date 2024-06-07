@@ -31,7 +31,7 @@ class ExtensibleFunctionsLoaderTest {
         expectedResult.add(SinFunction.class);
         expectedResult.add(CosFunction.class);
         expectedResult.add(TanFunction.class);
-        Set<Class<? extends CalculatorFunction>> actualResult = objectUnderTest.loadCalculatorFunctionSubClasses();
+        Set<Class<? extends CalculatorFunction>> actualResult = objectUnderTest.loadExtensibleFunctionsClasses();
         assertEquals(expectedResult, actualResult);
     }
 

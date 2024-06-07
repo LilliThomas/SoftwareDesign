@@ -32,7 +32,6 @@ public class CalculatorView extends JFrame {
     JTextArea textAreaCalculation = new JTextArea();
 
 
-
     public CalculatorView() {
 
         setTitle("Taschenrechner");

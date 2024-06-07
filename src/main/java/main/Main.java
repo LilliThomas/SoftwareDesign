@@ -1,4 +1,4 @@
-package org.example;
+package main;
 
 import controllers.CalculatorController;
 import model.CalculatorModel;

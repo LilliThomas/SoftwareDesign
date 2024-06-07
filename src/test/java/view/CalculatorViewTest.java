@@ -24,6 +24,7 @@ public class CalculatorViewTest {
         controller = new CalculatorController(view, model);
         window = new FrameFixture(view);
         window.show();
+        window.button("btnClear").click();
     }
 
     @AfterEach

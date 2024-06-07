@@ -9,11 +9,20 @@
         Custom ruleset for Software Design project
     </description>
 
-    <!-- Your rules will come here -->
+    <!-- best practice rules -->
     <rule ref="category/java/bestpractices.xml/AbstractClassWithoutAbstractMethod" />
+    <rule ref="category/java/bestpractices.xml/JUnitTestContainsTooManyAsserts" />
+    <rule ref="category/java/bestpractices.xml/UseStandardCharsets" />
+
+    <!-- code style rules -->
     <rule ref="category/java/codestyle.xml/UnnecessaryImport" />
     <rule ref="category/java/codestyle.xml/UnnecessaryModifier" />
     <rule ref="category/java/codestyle.xml/UnnecessaryReturn" />
+
+    <!-- design rules -->
     <rule ref="category/java/design.xml/SimplifyBooleanReturns" />
+    <rule ref="category/java/design.xml/SimplifyBooleanExpressions" />
+    <rule ref="category/java/design.xml/SimplifyConditional" />
+    <rule ref="category/java/design.xml/SwitchDensity" />
 
 </ruleset>

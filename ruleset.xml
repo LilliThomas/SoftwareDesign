@@ -18,6 +18,8 @@
     <rule ref="category/java/codestyle.xml/UnnecessaryImport" />
     <rule ref="category/java/codestyle.xml/UnnecessaryModifier" />
     <rule ref="category/java/codestyle.xml/UnnecessaryReturn" />
+    <rule ref="category/apex/codestyle.xml/FieldDeclarationsShouldBeAtStart" />
+    <rule ref="category/apex/codestyle.xml/ForLoopsMustUseBraces" />
 
     <!-- design rules -->
     <rule ref="category/java/design.xml/SimplifyBooleanReturns" />
@@ -25,4 +27,8 @@
     <rule ref="category/java/design.xml/SimplifyConditional" />
     <rule ref="category/java/design.xml/SwitchDensity" />
 
+    <!-- naming conventions -->
+    <rule ref="category/apex/codestyle.xml/ClassNamingConventions" />
+    <rule ref="category/apex/codestyle.xml/FieldNamingConventions" />
+    <rule ref="category/apex/codestyle.xml/FormalParameterNamingConventions" />
 </ruleset>

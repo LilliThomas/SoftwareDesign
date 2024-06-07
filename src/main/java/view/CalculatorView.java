@@ -31,7 +31,9 @@ public class CalculatorView extends JFrame {
     JTextArea textAreaResult = new JTextArea();
     JTextArea textAreaCalculation = new JTextArea();
 
-
+    /**
+     * create GUI according to the model of the Windows calculator
+     */
     public CalculatorView() {
 
         setTitle("Taschenrechner");
@@ -109,6 +111,7 @@ public class CalculatorView extends JFrame {
 
 
     }
+
     public void setTextResult(String text) {
         textAreaResult.setText(text);
     }
@@ -117,6 +120,10 @@ public class CalculatorView extends JFrame {
         textAreaCalculation.setText(text);
     }
 
+    /**
+     * Adds an ActionListener to handle operations (e.g., addition, subtraction).
+     * @param listener The ActionListener to be added.
+     */
     public void addOperationButtonListener(ActionListener listener) {
         btnPlus.addActionListener(listener);
         btnMinus.addActionListener(listener);
@@ -125,12 +132,20 @@ public class CalculatorView extends JFrame {
 
     }
 
+    /**
+     * Adds an ActionListener to handle direct operations (e.g., square root, square).
+     * @param listener The ActionListener to be added.
+     */
     public void addDirectOperationButtonListener(ActionListener listener) {
         btnSqrt.addActionListener(listener);
         btnQuadrat.addActionListener(listener);
         btnSign.addActionListener(listener);
     }
 
+    /**
+     * Adds an ActionListener to handle number buttons.
+     * @param listener The ActionListener to be added.
+     */
     public void addNumberButtonListener(ActionListener listener) {
         btn1.addActionListener(listener);
         btn2.addActionListener(listener);
@@ -144,22 +159,42 @@ public class CalculatorView extends JFrame {
         btn0.addActionListener(listener);
     }
 
+    /**
+     * Adds an ActionListener to handle the equals button.
+     * @param listener The ActionListener to be added.
+     */
     public void addEqualsButtonListener(ActionListener listener) {
         btnEqual.addActionListener(listener);
     }
 
+    /**
+     * Adds an ActionListener to handle the decimal point button.
+     * @param listener The ActionListener to be added.
+     */
     public void addDecimalPointButtonListener(ActionListener listener) {
         btnComma.addActionListener(listener);
     }
 
+    /**
+     * Adds an ActionListener to handle the delete button.
+     * @param listener The ActionListener to be added.
+     */
     public void addDeleteButtonListener(ActionListener listener) {
         btnDel.addActionListener(listener);
     }
 
+    /**
+     * Adds an ActionListener to handle the clear button.
+     * @param listener The ActionListener to be added.
+     */
     public void addClearButtonListener(ActionListener listener) {
         btnClear.addActionListener(listener);
     }
 
+    /**
+     * Adds an ItemListener to handle the dropdown menu for additional functions.
+     * @param listener The ItemListener to be added.
+     */
     public void addMoreFunctionsDropDownListener(ItemListener listener) {
         comboBoxMoreFunctions.addItemListener(listener);
     }
@@ -168,7 +203,10 @@ public class CalculatorView extends JFrame {
         comboBoxMoreFunctions.setModel(new DefaultComboBoxModel<>(options));
     }
 
-
+    /**
+     * Displays an error message dialog box.
+     * @param errorMessage The error message to be displayed.
+     */
     public void displayErrorMessage(String errorMessage) {
         JOptionPane.showMessageDialog(this, errorMessage);
     }

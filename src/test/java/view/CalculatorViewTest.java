@@ -96,6 +96,7 @@ public class CalculatorViewTest {
     @Test
     @GUITest
     public void shouldPerformMultiplicationWhenMultiplyButtonIsClicked() throws Exception {
+        window.button("btnClear").click();
         window.button(JButtonMatcher.withText("4")).click();
         window.button(JButtonMatcher.withText("*")).click();
         window.button(JButtonMatcher.withText("2")).click();

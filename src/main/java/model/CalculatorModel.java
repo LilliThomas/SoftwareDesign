@@ -9,6 +9,9 @@ import java.beans.PropertyChangeSupport;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
+/**
+ * The model of the MVC-pattern and calculates numbers, builds texts, sets content of text.
+ */
 public class CalculatorModel {
 
     private final PropertyChangeSupport pcSupport;
@@ -25,7 +28,9 @@ public class CalculatorModel {
     private String prevAnswer;
     private String lastEnteredNumber;
 
-
+    /**
+     * Constructor for CalculatorModel, sets default for all values and initialises {@link PropertyChangeSupport}-Object.
+     */
     public CalculatorModel() {
         this.extensibleFunctionNames = new ExtensibleFunctionsLoader().getExtensibleFunctionNames();
 
@@ -39,6 +44,14 @@ public class CalculatorModel {
 
     }
 
+    /**
+     * Parses the numbers from strings to doubles, creates {@link CalculatorService} and updates texts.
+     * @param isFullCalculation             if the "="-button as already been clicked, so the sign should appear in smalltext.
+     * @throws InvocationTargetException    possible if error from reflections
+     * @throws NoSuchMethodException        possible if error from reflections
+     * @throws IllegalAccessException       possible if error from reflections
+     * @throws InstantiationException       possible if error from reflections
+     */
     public void calculate(boolean isFullCalculation) throws InvocationTargetException, NoSuchMethodException, IllegalAccessException, InstantiationException {
         if (lastEnteredNumber.isBlank()) {
             return;
@@ -52,6 +65,9 @@ public class CalculatorModel {
         this.prevAnswer = this.answer;
     }
 
+    /**
+     * Sets content of textfields and variables to default.
+     */
     public void resetEverything() {
         this.setBigText("0");
         this.setSmallText("");
@@ -61,11 +77,19 @@ public class CalculatorModel {
         this.lastEnteredNumber = "";
     }
 
+    /**
+     * Sets the big textfield to the string that is entered as param and notifies the controller.
+     * @param bigText   string that the big textfield should display
+     */
     public void setBigText(String bigText) {
         pcSupport.firePropertyChange(Constants.PCL_BIGTEXT, this.bigText, bigText);
         this.bigText = bigText;
     }
 
+    /**
+     * Adds the entered string to the existing text in the big textfield.
+     * @param bigText   string that should be added to existing text
+     */
     public void addToBigText(String bigText) {
         String newBigText = bigText;
         if (!this.bigText.equals("0")) {
@@ -80,12 +104,18 @@ public class CalculatorModel {
         }
     }
 
+    /**
+     * Adds a decimal point (german style) to the content in the big textfield.
+     */
     public void addDecimalPointToBigText() {
         if (!this.bigText.contains(",")) {
             this.addToBigText(",");
         }
     }
 
+    /**
+     * Deletes the last character from the content in the big textfield.
+     */
     public void deleteFromBigText() {
         String newBigText = this.bigText.substring(0, bigText.length() - 1);
         if (newBigText.isEmpty()) {
@@ -95,12 +125,19 @@ public class CalculatorModel {
         this.bigText = newBigText;
     }
 
-
+    /**
+     * Sets the content of the small textfield and notifies the controller.
+     * @param smallText     string that should be displayed
+     */
     public void setSmallText(String smallText) {
         pcSupport.firePropertyChange(Constants.PCL_SMALLTEXT, this.smallText, smallText);
         this.smallText = smallText;
     }
 
+    /**
+     * Updates the content of the small textfield based on the current calculation.
+     * @param fullCalculation   if the "="-button has been clicked
+     */
     public void updateSmallText(boolean fullCalculation) {
         CalculationText calculationText;
         if (!fullCalculation) {
@@ -136,6 +173,10 @@ public class CalculatorModel {
         return this.extensibleFunctionNames.toArray(new String[0]);
     }
 
+    /**
+     * Adds a {@link PropertyChangeListener} to the existing {@link PropertyChangeSupport}-object.
+     * @param pcl   {@link PropertyChangeListener} to listen to changes for the textfields
+     */
     public void addPropertyChangeListener(PropertyChangeListener pcl) {
         pcSupport.addPropertyChangeListener(pcl);
     }

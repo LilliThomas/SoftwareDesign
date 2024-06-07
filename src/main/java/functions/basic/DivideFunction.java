@@ -11,7 +11,7 @@ public class DivideFunction implements CalculatorFunction {
      * @inheritDoc
      */
     @Override
-    public double calculate(double p1, double p2) {
+    public double calculate(double p1, double p2) throws DivisionException {
         if (p2 == 0) {
             throw new DivisionException("Nicht durch 0 teilen!");
         }

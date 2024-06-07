@@ -24,9 +24,4 @@
     <rule ref="category/java/design.xml/SimplifyBooleanExpressions" />
     <rule ref="category/java/design.xml/SimplifyConditional" />
     <rule ref="category/java/design.xml/SwitchDensity" />
-
-    <!-- naming conventions -->
-    <rule ref="category/apex/codestyle.xml/ClassNamingConventions" />
-    <rule ref="category/apex/codestyle.xml/FieldNamingConventions" />
-    <rule ref="category/apex/codestyle.xml/FormalParameterNamingConventions" />
 </ruleset>
